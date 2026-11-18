@@ -18,7 +18,7 @@ function render(){
   const weekly=data?.week||{},monthly=data?.month||{};
   set('universeWeek',weekly.qualified>=20?percentage(weekly.median_change):'—');
   set('universeMonth',monthly.qualified>=20?percentage(monthly.median_change):'—');
-  set('universeFreshness',data?.updated_at?'Updated '+new Date(data.updated_at).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'Market scan pending');
+  set('universeFreshness',data?.updated_at?'Fetched '+new Date(data.updated_at).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'Market scan pending');
   let panel=data?.[period]||{};
   function list(id,rows){
     const host=el(id);if(!host)return;
