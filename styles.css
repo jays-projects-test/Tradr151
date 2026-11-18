@@ -23,3 +23,37 @@
 .guide-mover-row .guide-result.up strong{color:#43c79b}
 .guide-mover-row .guide-result.down strong{color:#ef6b76}
 .guide-disclaimer{margin-top:12px;line-height:1.5}
+
+/* Tradr151 broad-market intelligence panel */
+.universePanel{margin:20px 0 27px;padding:22px;border:1px solid #22364b;border-radius:18px;background:linear-gradient(135deg,#101f2d,#0b1723 70%);min-width:0}
+.universeHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:20px}
+.universeHeader h3{font-size:23px;letter-spacing:-.6px;margin:7px 0 0}
+.universeFreshness{font-size:11px;color:#8299ad;text-align:right}
+.universeStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.universeStats>div{padding:13px 15px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid #263849;min-width:0}
+.universeStats small,.universeStats span{display:block;font-size:11px;line-height:1.45;color:#90a5b8}
+.universeStats strong{font-size:26px;display:block;margin:8px 0 5px;font-variant-numeric:tabular-nums;letter-spacing:-.6px}
+.universeTabs{display:flex;gap:8px;margin-top:20px;border-bottom:1px solid #26384a}
+.universeTabs button{background:none;border:0;border-bottom:2px solid transparent;padding:11px 13px;color:#95a8ba;font-weight:550}
+.universeTabs button.selected{color:#e7f5ff;border-bottom-color:#48b5ff}
+.universeColumns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:14px}
+.universeColumns h4{font-size:13px;margin:0 0 10px}
+.wideRow{display:flex;justify-content:space-between;gap:9px;align-items:center;border-bottom:1px solid #223243;padding:11px 0}
+.wideAsset{display:flex;gap:9px;align-items:center;min-width:0}
+.wideAsset img{width:32px;height:38px;object-fit:contain;flex-shrink:0}
+.wideAsset span{min-width:0}
+.wideAsset b{font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wideAsset small,.widePrice small{color:#8197ab;font-size:10px;line-height:1.6;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.widePrice{text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums}
+.widePrice strong{font-size:13px}
+.universeNote{font-size:10px;color:#7891a4;margin-top:17px;line-height:1.55}
+@media(max-width:650px){
+ .universePanel{padding:15px;margin-top:12px}
+ .universeHeader h3{font-size:20px}
+ .universeFreshness{font-size:10px;max-width:110px}
+ .universeStats{gap:6px}
+ .universeStats>div{padding:10px 7px}
+ .universeStats strong{font-size:19px}
+ .universeStats small,.universeStats span{font-size:9px}
+ .universeColumns{grid-template-columns:1fr;gap:18px}
+}
