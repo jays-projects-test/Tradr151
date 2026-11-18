@@ -1,4 +1,50 @@
 {
-  "updated_at": null,
-  "cards": []
+  "updated_at": "2026-11-18T18:14:13.403Z",
+  "cards": [
+    {
+      "id": "base1-4",
+      "language": "en",
+      "name": "Charizard",
+      "set": "Base Set",
+      "image": "https://assets.tcgdex.net/en/base/base1/4",
+      "observed_at": "2026-11-18T18:14:13.403Z",
+      "tcgplayer_variants": [
+        {
+          "variant": "holofoil",
+          "guide_usd": 1001.05
+        }
+      ],
+      "cardmarket_guide_eur": 453.87
+    },
+    {
+      "id": "base1-2",
+      "language": "en",
+      "name": "Blastoise",
+      "set": "Base Set",
+      "image": "https://assets.tcgdex.net/en/base/base1/2",
+      "observed_at": "2026-11-18T18:14:13.403Z",
+      "tcgplayer_variants": [
+        {
+          "variant": "holofoil",
+          "guide_usd": 233.63
+        }
+      ],
+      "cardmarket_guide_eur": 135.44
+    },
+    {
+      "id": "base1-15",
+      "language": "en",
+      "name": "Venusaur",
+      "set": "Base Set",
+      "image": "https://assets.tcgdex.net/en/base/base1/15",
+      "observed_at": "2026-11-18T18:14:13.403Z",
+      "tcgplayer_variants": [
+        {
+          "variant": "holofoil",
+          "guide_usd": 134.94
+        }
+      ],
+      "cardmarket_guide_eur": 103.64
+    }
+  ]
 }
