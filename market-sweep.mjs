@@ -98,7 +98,18 @@ else{
     return {qualified:unique.length,gainers:unique.filter(r=>r.change>0).sort((a,b)=>b.change-a.change).slice(0,15),losers:unique.filter(r=>r.change<0).sort((a,b)=>a.change-b.change).slice(0,15),median_change:unique.length?unique.map(r=>r.change).sort((a,b)=>a-b)[Math.floor(unique.length/2)]:null,breadth:unique.length?100*unique.filter(r=>r.change>0).length/unique.length:null};
   };
   const pricedIds=new Set(Object.keys(db.observations).map(k=>k.split(':')[0]).filter(id=>db.products[id]&&(db.products[id].number||db.products[id].rarity)));
-  const board={updated_at:new Date().toISOString(),source:'TCGCSV · TCGplayer market guides',provider_updated_at:providerUpdatedAt,currency:'USD',methodology:'Product/printing guide price; not realised sales or worldwide market capitalisation.',coverage:{groups_total:list.length,groups_visited:Object.keys(state.lastFetched).length,groups_this_run:completed,products_catalogued:Object.values(db.products).filter(p=>p.number||p.rarity).length,products_priced:pricedIds.size,variants_with_history:Object.keys(db.observations).length},week:best(7),month:best(30),warnings:failures.slice(0,20)};
+  const leadersByProduct=new Map();
+  for(const [key,points] of Object.entries(db.observations)){
+    const id=Number(key.split(':',1)[0]),product=db.products[id];
+    if(!product||( !product.number && !product.rarity)||!points?.length)continue;
+    const current=points.at(-1);
+    if(current[0]<new Date(Date.now()-5*86400000).toISOString().slice(0,10))continue;
+    const price=Number(current[1]);if(!Number.isFinite(price)||price<=0||price>100000)continue;
+    const entry={id:product.id,name:product.name,set:product.set,variant:key.slice(String(id).length+1),image:product.img,usd:price};
+    if(!leadersByProduct.has(id)||leadersByProduct.get(id).usd<price)leadersByProduct.set(id,entry);
+  }
+  const leaders=[...leadersByProduct.values()].sort((a,b)=>b.usd-a.usd).slice(0,15);
+  const board={updated_at:new Date().toISOString(),source:'TCGCSV · TCGplayer market guides',provider_updated_at:providerUpdatedAt,currency:'USD',methodology:'Product/printing guide price; not realised sales or worldwide market capitalisation.',coverage:{groups_total:list.length,groups_visited:Object.keys(state.lastFetched).length,groups_this_run:completed,products_catalogued:Object.values(db.products).filter(p=>p.number||p.rarity).length,products_priced:pricedIds.size,variants_with_history:Object.keys(db.observations).length},week:best(7),month:best(30),leaders,warnings:failures.slice(0,20)};
   await write('market-universe.json',db);
   await write('market-sweep-state.json',state);
   await write('market-board.json',board);
