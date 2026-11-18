@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'data/featured-cards.json'
+      - 'update-quotes.mjs'
       - '.github/workflows/update-quotes.yml'
   schedule:
     - cron: '17 */6 * * *'
