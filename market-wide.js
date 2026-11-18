@@ -10,6 +10,10 @@ function render(){
   const coverage=data?.coverage||{};
   const count=coverage.products_priced||0;
   set('universeCards',count?new Intl.NumberFormat('en-GB').format(count):'—');
+  if(count && el('marketAssets')){
+    set('marketAssets',new Intl.NumberFormat('en-GB').format(count));
+    set('marketAssetsMeta','Market-wide priced products · guide source');
+  }
   set('universeCoverage',(coverage.groups_visited||0)+' / '+(coverage.groups_total||'—')+' sets scanned');
   const weekly=data?.week||{},monthly=data?.month||{};
   set('universeWeek',weekly.qualified>=20?percentage(weekly.median_change):'—');
