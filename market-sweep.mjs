@@ -53,8 +53,8 @@ for(const group of selected){
       let observations=db.observations[key]||[];
       // Date is deliberately daily and comparable by exact product + finish.
       observations=observations.filter(row=>Array.isArray(row)&&typeof row[0]==='string'&&row[0]>=new Date(Date.now()-68*86400000).toISOString().slice(0,10));
-      if(observations.at(-1)?.[0]===today)observations[observations.length-1]=[today,price];
-      else observations.push([today,price]);
+      if(observations.at(-1)?.[0]===today)observations[observations.length-1]=[today,price,Number.isFinite(Number(quote.midPrice))?Number(quote.midPrice):null,Number.isFinite(Number(quote.lowPrice))?Number(quote.lowPrice):null];
+      else observations.push([today,price,Number.isFinite(Number(quote.midPrice))?Number(quote.midPrice):null,Number.isFinite(Number(quote.lowPrice))?Number(quote.lowPrice):null]);
       db.observations[key]=observations;
       changed++;
     }
