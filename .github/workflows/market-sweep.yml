@@ -2,7 +2,7 @@ name: Build Pokemon broad market dashboard
 on:
   workflow_dispatch:
   schedule:
-    - cron: '37 0,6,12,18 * * *'
+    - cron: '27 21 * * *'
   push:
     paths:
       - 'market-sweep.mjs'
