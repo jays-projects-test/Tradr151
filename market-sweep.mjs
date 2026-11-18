@@ -26,7 +26,9 @@ const list=groups.filter(g=>Number.isInteger(g.groupId)&&g.name).sort((a,b)=>a.g
 const cutoff=Date.now()-24*3600000;
 let eligible=list.filter(g=>!state.lastFetched[g.groupId]||Date.parse(state.lastFetched[g.groupId])<cutoff);
 eligible.sort((a,b)=>Date.parse(state.lastFetched[a.groupId]||'2000-01-01')-Date.parse(state.lastFetched[b.groupId]||'2000-01-01'));
-const selected=eligible.slice(0,22);
+const selected=eligible.slice(0,72);
+let providerUpdatedAt=null;
+try{const update=await fetch('https://tcgcsv.com/last-updated.txt',{signal:AbortSignal.timeout(10000)});if(update.ok)providerUpdatedAt=(await update.text()).trim();}catch{}
 let completed=0,changed=0,failures=[];
 for(const group of selected){
   try{
@@ -74,7 +76,7 @@ else{
   const nowMs=Date.now();
   for(const [key,points] of Object.entries(db.observations)){
     const id=key.split(':',1)[0],product=db.products[id];
-    if(!product||!points.length)continue;
+    if(!product||!(product.number||product.rarity)||!points.length)continue;
     const last=points.at(-1),lastMs=Date.parse(last[0]+'T12:00:00Z');
     if(nowMs-lastMs>3*86400000)continue;
     for(const days of [7,30]){
@@ -95,8 +97,8 @@ else{
     for(const r of rows){if(!seen.has(r.id)){seen.add(r.id);unique.push(r);}}
     return {qualified:unique.length,gainers:unique.filter(r=>r.change>0).sort((a,b)=>b.change-a.change).slice(0,15),losers:unique.filter(r=>r.change<0).sort((a,b)=>a.change-b.change).slice(0,15),median_change:unique.length?unique.map(r=>r.change).sort((a,b)=>a-b)[Math.floor(unique.length/2)]:null,breadth:unique.length?100*unique.filter(r=>r.change>0).length/unique.length:null};
   };
-  const pricedIds=new Set(Object.keys(db.observations).map(k=>k.split(':')[0]));
-  const board={updated_at:new Date().toISOString(),source:'TCGCSV · TCGplayer market guides',currency:'USD',methodology:'Product/printing guide price; not realised sales or worldwide market capitalisation.',coverage:{groups_total:list.length,groups_visited:Object.keys(state.lastFetched).length,groups_this_run:completed,products_catalogued:Object.keys(db.products).length,products_priced:pricedIds.size,variants_with_history:Object.keys(db.observations).length},week:best(7),month:best(30),warnings:failures.slice(0,20)};
+  const pricedIds=new Set(Object.keys(db.observations).map(k=>k.split(':')[0]).filter(id=>db.products[id]&&(db.products[id].number||db.products[id].rarity)));
+  const board={updated_at:new Date().toISOString(),source:'TCGCSV · TCGplayer market guides',provider_updated_at:providerUpdatedAt,currency:'USD',methodology:'Product/printing guide price; not realised sales or worldwide market capitalisation.',coverage:{groups_total:list.length,groups_visited:Object.keys(state.lastFetched).length,groups_this_run:completed,products_catalogued:Object.values(db.products).filter(p=>p.number||p.rarity).length,products_priced:pricedIds.size,variants_with_history:Object.keys(db.observations).length},week:best(7),month:best(30),warnings:failures.slice(0,20)};
   await write('market-universe.json',db);
   await write('market-sweep-state.json',state);
   await write('market-board.json',board);
