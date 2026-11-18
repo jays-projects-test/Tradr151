@@ -17,21 +17,51 @@
   <main class="main">
     <header class="top"><div class="mobileBrand"><span class="brand-icon mini"><svg viewBox="0 0 40 40" fill="none"><rect x="7" y="6" width="24" height="29" rx="4.5" stroke="currentColor" stroke-width="3" transform="rotate(-8 19 20)"/><path d="M10 28L17 21L22 24L31 12M25 12H31V18" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>tradr<span class="accent">151</span></div><div class="pageTop"><div class="eyebrow" id="topEyebrow">YOUR CARD MARKET</div><h1 id="pageTitle">Market</h1></div><div class="headerActions"><span id="connectionLabel" class="connectionLabel">Guest • local storage</span><button class="iconButton" id="infoButton" aria-label="Market data information" data-info="guide" title="Information">i</button><button class="avatarButton" id="authButton" aria-label="Sign in">Sign in</button></div></header>
     <section class="tab" id="discover">
-      <div class="market-hero"><div class="market-header"><div><span class="market-kicker">TRADR151 / POKÉMON MARKETS</span><h2>Market overview</h2></div><button class="help" data-info="market" aria-label="Market methodology">i</button></div><div class="universePanel" id="universePanel">
+      <div class="market-hero"><div class="tradr-market-toolbar">
+  <div class="market-title"><span>POKÉMON MARKET INDEX</span><h2>Market overview</h2></div>
+  <div class="currency-toggle" role="group" aria-label="Display currency"><button type="button" data-currency="USD" class="selected">USD</button><button type="button" data-currency="GBP">GBP</button></div>
+</div><div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
+ <div class="tradr-gauge">
+  <div class="gauge-heading"><span>FEAR &amp; GREED</span><button class="tiny-info" data-info="fear" aria-label="About Fear and Greed calculation">ⓘ</button></div>
+  <svg viewBox="0 0 240 137" role="img" aria-label="Pokémon market sentiment gauge">
+   <path d="M 25 114 A 95 95 0 0 1 215 114" stroke="#293748" stroke-width="20" fill="none" stroke-linecap="round"/>
+   <path d="M 25 114 A 95 95 0 0 1 43.1 57.2" stroke="#e95b68" stroke-width="19" fill="none"/>
+   <path d="M 43.1 57.2 A 95 95 0 0 1 87.4 24.8" stroke="#ed9752" stroke-width="19" fill="none"/>
+   <path d="M 87.4 24.8 A 95 95 0 0 1 152.6 24.8" stroke="#e4c553" stroke-width="19" fill="none"/>
+   <path d="M 152.6 24.8 A 95 95 0 0 1 196.9 57.2" stroke="#72c88b" stroke-width="19" fill="none"/>
+   <path d="M 196.9 57.2 A 95 95 0 0 1 215 114" stroke="#30bb93" stroke-width="19" fill="none"/>
+   <g id="gaugeNeedle" hidden><line x1="120" y1="114" x2="120" y2="30" stroke="#eef8ff" stroke-width="4" stroke-linecap="round"/><circle cx="120" cy="114" r="7" fill="#eef8ff"/></g>
+   <text x="120" y="101" font-size="35" text-anchor="middle" font-weight="700" fill="#f0f8ff" id="gaugeValue">—</text>
+   <text x="25" y="136" font-size="11" fill="#8195ab" text-anchor="middle">0</text>
+   <text x="215" y="136" font-size="11" fill="#8195ab" text-anchor="middle">100</text>
+  </svg>
+  <div class="gauge-label" id="gaugeLabel">Collecting market history</div><div class="gauge-help">Guide-price sentiment proxy · not a global sales index</div>
+ </div>
+ <div class="market-fast-stats">
+  <div><small>Tracked products</small><strong id="gaugeTracked">—</strong><span>Market-wide coverage</span></div>
+  <div><small>7D market change</small><strong id="gauge7d">—</strong><span>Comparable price guides</span></div>
+  <div><small>30D market change</small><strong id="gauge30d">—</strong><span>Comparable price guides</span></div>
+  <div><small>Price feed</small><strong class="feed-status" id="gaugeFresh">Daily</strong><span id="gaugeFreshSub">Checks for updates hourly</span></div>
+ </div>
+</div>
         <div class="universeHeader"><div><span class="market-kicker">THE POKÉMON MARKET</span><h3>Market pulse <button class="tiny-info" data-info="market" title="Guide-price market coverage">ⓘ</button></h3></div><span class="universeFreshness" id="universeFreshness">Connecting market feed</span></div>
-        <div class="universeStats">
+        <div class="universeStats universeStatsLegacy" hidden>
           <div><small>Priced products</small><strong id="universeCards">—</strong><span id="universeCoverage">Scanning catalogue</span></div>
           <div><small>7D market median</small><strong id="universeWeek">—</strong><span>Comparable guide prices</span></div>
           <div><small>30D market median</small><strong id="universeMonth">—</strong><span>Comparable guide prices</span></div>
         </div>
-        <div class="universeTabs"><button type="button" data-wide-period="week" class="selected">7D movers</button><button type="button" data-wide-period="month">30D movers</button></div>
+        <div class="market-product-search">
+  <div class="market-product-search-bar"><input type="search" id="marketProductSearch" placeholder="Search market cards by name, set or number..." aria-label="Search market-wide products"><button type="button" id="marketProductSearchButton">Search market</button></div>
+  <div id="marketProductSearchResults" class="market-product-search-results" aria-live="polite"></div>
+</div><div class="universeTabs"><button type="button" data-wide-period="week" class="selected">7D movers</button><button type="button" data-wide-period="month">30D movers</button></div>
         <div class="universeColumns">
           <div><h4><span class="rise">↗</span> Biggest gainers</h4><div id="universeGainers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
           <div><h4><span class="fall">↘</span> Biggest losers</h4><div id="universeLosers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
         </div>
         <div class="universeLeaders"><h4>Highest guide prices <span class="muted small">Tracked singles · USD</span></h4><div id="universeLeaders" class="universeList"><p class="muted small">Loading market leaders...</p></div></div>
         <p class="universeNote">TCGplayer market-guide price trends across an expanding card universe. Not recorded sales or a total-market-cap estimate.</p>
-      </div><div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
+      </div><div class="legacyMarketData" hidden>
+<div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
       <div class="market-stats"><div class="market-tile"><small>Observed sales value · 30D</small><strong id="marketVolume">—</strong><span id="marketVolumeMeta">Verifiable sample only</span></div><div class="market-tile"><small>Market breadth · 30D</small><strong id="marketBreadth">—</strong><span id="marketBreadthMeta">Requires historical comps</span></div><div class="market-tile"><small>Tracked assets</small><strong id="marketAssets">0</strong><span id="marketAssetsMeta">In coverage universe</span></div><div class="market-tile sentiment-tile"><small>Fear & Greed <button class="tiny-info" data-info="fear" aria-label="About the sentiment index">ⓘ</button></small><strong id="marketSentiment">—</strong><span id="marketMood">Not enough market data</span><div class="sentiment-bar"></div></div></div>
       <div class="market-tabs" role="tablist" aria-label="Market tables"><button class="market-tab selected" data-market-view="movers">Top movers</button><button class="market-tab" data-market-view="gainers">Gainers</button><button class="market-tab" data-market-view="losers">Losers</button><button class="market-tab" data-market-view="signals">Signals</button></div>
       <div class="market-table-header"><span>Card</span><span>30D</span><span>Raw · GBP</span></div><div id="marketTable" class="market-table"><div class="market-empty">Market rankings will appear after matching historical sales are available.</div></div>
@@ -46,7 +76,8 @@
       </div>
       <div class="quote-section"><div class="sectionHead"><h3>Market guides</h3><button class="help" data-info="quotes" aria-label="About price guides">i</button></div><div id="quoteBoard" class="quote-board"><div class="market-empty">Scheduled provider quotes are not populated yet. Enable the GitHub Action to refresh the sample cards.</div></div></div>
       <div class="market-footnote">Prices and signals use exact-printing records. Data coverage matters more than a synthetic live ticker. <button class="text-link" data-info="market">Methodology ⓘ</button></div></div>
-      <div class="sectionHead searchHead"><h3>Find a card</h3><button class="help" data-info="search" aria-label="About card lookup">i</button></div>
+      </div>
+<div class="sectionHead searchHead"><h3>Find a card</h3><button class="help" data-info="search" aria-label="About card lookup">i</button></div>
       <div class="searchPanel"><div class="searchRow"><div class="searchInputWrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" autocomplete="off" placeholder="Name, card number or set" aria-label="Search cards"></div><select id="language" aria-label="Card language"><option value="en">EN</option><option value="ja">JP</option><option value="fr">FR</option></select><button class="primary" id="searchButton">Search</button></div><div class="searchActions"><label class="uploadBtn" for="photoInput"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><circle cx="8" cy="10" r="1.5"/><path d="m4 18 5-5 4 3 3-4 5 6"/></svg> Upload photo</label><input id="photoInput" type="file" accept="image/*" hidden><span class="muted small" id="photoStatus">Manual photo matching</span></div><div hidden id="photoPreview"></div><p class="status" id="searchStatus" role="status"></p></div>
       <div class="sectionHead resultsHead"><h3 id="resultsTitle">Cards</h3><span class="hint">Explore a card to view market insights</span></div><div class="cards" id="results"><div class="emptyState"><div class="emptySymbol"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m8 15 3-3 2 2 3-4"/></svg></div><b>Your market starts here</b><p>Search for a card to see its details and available market data.</p></div></div>
       <div class="sectionHead overviewHead"><h3>Your overview</h3><button class="help" data-info="overview" aria-label="About overview">i</button></div><div class="metrics overviewMetrics"><div class="stat"><span>Cards researched</span><strong id="trackedCount">0</strong></div><div class="stat"><span>Watchlist</span><strong id="wishCount">0</strong></div><div class="stat"><span>Sale records</span><strong id="compsCount">0</strong></div></div>
@@ -70,4 +101,8 @@
 <dialog id="authDialog"><form id="authForm" method="dialog"><div class="modalHead"><h3>Sign in</h3><button class="modalClose" value="cancel" aria-label="Close">×</button></div><p class="muted small">Use an email magic link when cloud sync is configured. Otherwise your data stays on this device.</p><label>Email<input id="authEmail" placeholder="you@example.com" type="email" required></label><button id="sendLink" class="primary full" value="submit">Send sign-in link</button><p class="muted small" id="authStatus"></p></form></dialog>
 <script type="module" src="app.js"></script><script type="module" src="market.js"></script><script src="ui.js" defer></script>
 <script src="market-wide.js" defer></script>
+<dialog id="marketCardDialog" class="market-card-dialog" aria-label="Market card details">
+ <div class="modal-header"><span class="market-kicker">CARD MARKET INTELLIGENCE</span><button id="closeMarketCard" class="modalClose" type="button" aria-label="Close card details">×</button></div>
+ <div class="market-card-body" id="marketCardBody"><p class="muted">Loading card details...</p></div>
+</dialog>
 </body></html>
