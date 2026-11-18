@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 const STORAGE='tradr151_workspace_v1', CONFIG='tradr151_config_v1';
 const blank=()=>({cards:{},watchlist:[],portfolio:{},comps:{}});
-let workspace=readJson(STORAGE,blank()); let config=readJson(CONFIG,{}); let db=null,user=null,current=null;
+let workspace=readJson(STORAGE,blank()); let config={url:'https://fhibcwfsptiqacsphiek.supabase.co',key:"sb_publishable_t29uHv88-UO671pKFEQ8GQ_dSRKW8nt",...readJson(CONFIG,{})}; let db=null,user=null,current=null;
 function readJson(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
 function saveLocal(){localStorage.setItem(STORAGE,JSON.stringify(workspace));refreshCounts();window.dispatchEvent(new Event("tradr:changed"))}
 function msg(el,s){$(el).textContent=s}
