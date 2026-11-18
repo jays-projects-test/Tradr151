@@ -26,7 +26,41 @@ $('results').querySelectorAll('.card').forEach(el=>el.addEventListener('click',(
 msg('searchStatus',`${cards.length} catalogue matches displayed. Select the correct set and printing. Results may be limited to the first 56.`);
 }catch(e){msg('searchStatus',`Search unavailable: ${e.message}. Check your network and try again.`)}}
 $('searchButton').addEventListener('click',searchCards);$('search').addEventListener('keydown',e=>{if(e.key==='Enter')searchCards()});
-$('photoInput').addEventListener('change',e=>{let f=e.target.files?.[0];if(!f)return;let url=URL.createObjectURL(f);$('photoPreview').hidden=false;$('photoPreview').innerHTML='';let image=document.createElement('img');image.src=url;image.onload=()=>URL.revokeObjectURL(url);$('photoPreview').append(image);msg('photoStatus',`Photo loaded: ${f.name}. Enter the card name/number to match the exact printing. Photo recognition needs a server-side AI key.`)});
+$('photoInput').addEventListener('change',async e=>{
+  const f=e.target.files?.[0];if(!f)return;
+  if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>5_500_000){
+    msg('photoStatus','Use a JPEG, PNG or WebP under 5 MB.');return;
+  }
+  const url=URL.createObjectURL(f);
+  $('photoPreview').hidden=false;$('photoPreview').innerHTML='';
+  const image=document.createElement('img');image.src=url;image.onload=()=>URL.revokeObjectURL(url);$('photoPreview').append(image);
+  if(!db||!user){msg('photoStatus','Photo loaded. Sign in to use AI card identification, or search manually.');return;}
+  try{
+    msg('photoStatus','AI is examining your card...');
+    const session=(await db.auth.getSession()).data.session;
+    if(!session?.access_token)throw Error('Session expired. Please sign in again.');
+    const encoded=await new Promise((resolve,reject)=>{
+      const reader=new FileReader();
+      reader.onerror=()=>reject(Error('Unable to read image'));
+      reader.onload=()=>resolve(String(reader.result).split(',')[1]||'');
+      reader.readAsDataURL(f);
+    });
+    const response=await fetch(config.url+'/functions/v1/identify-card',{
+      method:'POST',
+      headers:{'Content-Type':'application/json',apikey:config.key,Authorization:'Bearer '+session.access_token},
+      body:JSON.stringify({imageBase64:encoded,mimeType:f.type})
+    });
+    const data=await response.json();
+    if(data.error==='ai_not_configured'){msg('photoStatus','AI service is installed, but the Gemini API key still needs to be added to Supabase. Manual search is available.');return;}
+    if(!response.ok)throw Error(data.message||data.error||'Recognition unavailable');
+    const card=data.result||{};
+    if(!card.name){msg('photoStatus','AI could not identify this card reliably. Search it by name or number.');return;}
+    $('search').value=card.name;
+    const number=card.printedNumber?' · #'+card.printedNumber:'';
+    msg('photoStatus','Possible match: '+card.name+number+'. Verify the language, set, edition and finish in the results below.');
+    await searchCards();
+  }catch(error){msg('photoStatus','AI identification unavailable: '+error.message+'. You can still search manually.');}
+});
 async function openCard(c){current=c;changeTab('detail');msg('detailName',c.name);msg('detailSet',c.setName);msg('detailMeta',`${c.language.toUpperCase()} · card ${c.localId||'—'} · ${c.id}`);$('detailImage').innerHTML=makeCardImage(c);msg('snapshotSource','Loading available provider quotes…');try{const data=await fetchJSON(`https://api.tcgdex.net/v2/${c.language}/cards/${encodeURIComponent(c.id)}`);current={...c,...itemFromSearch({...data,set:data.set||{name:c.setName}},c.language),pricing:data.pricing||null};current.setName=data.set?.name||c.setName;current.image=data.image||c.image;msg('detailSet',current.setName);$('detailImage').innerHTML=makeCardImage(current);msg('snapshotSource','TCGdex • available live market guide quotes (USD/EUR), separate from verified sales');}catch(e){msg('snapshotSource',`Card pricing unavailable (${e.message}); manual GBP sold comps still work`)}setCard(current);renderDetail()}
 function providerQuotes(c){const p=c.pricing||{};let tc=p.tcgplayer||{},cm=p.cardmarket||{};let price=null,kind='';for(let k of ['holofoil','holo','normal','reverseHolofoil','reverse','firstEditionHolofoil']){if(tc[k]?.marketPrice!=null){price=tc[k].marketPrice;kind=k;break}}
 if(price===null){for(let v of Object.entries(tc)){if(v[1]?.marketPrice!=null){price=v[1].marketPrice;kind=v[0];break}}}
