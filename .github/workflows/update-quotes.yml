@@ -1,6 +1,10 @@
 name: Refresh public card guide quotes
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'data/featured-cards.json'
+      - '.github/workflows/update-quotes.yml'
   schedule:
     - cron: '17 */6 * * *'
 permissions:
