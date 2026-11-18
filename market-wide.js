@@ -30,9 +30,9 @@ function summary(){
    set('marketAssetsMeta','Market-wide priced products · US guide data');
  }
  const sourceTime=board?.updated_at?new Date(board.updated_at):null;
- set('universeFreshness',sourceTime?'Fetched '+sourceTime.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'Awaiting market feed');
+ set('universeFreshness',sourceTime?'fetched '+sourceTime.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+(Date.now()-sourceTime.getTime()>36*3600000?' · stale':''):'awaiting market feed');
  set('gaugeFresh',sourceTime?'Daily':'Pending');
- set('gaugeFreshSub',sourceTime?'Latest fetch '+sourceTime.toLocaleDateString('en-GB'):'Waiting for first feed');
+ set('gaugeFreshSub',sourceTime?'US price-guide snapshot · not live transaction sales':'Waiting for first guide feed');
  // Data-derived market breadth and momentum proxy. Avoid invented volume or global cap.
  const representative=week.qualified>=250 && (coverage.groups_visited||0)>=Math.ceil((coverage.groups_total||221)*0.75)
    && Number.isFinite(week.breadth)&&Number.isFinite(week.median_change);
