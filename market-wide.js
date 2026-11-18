@@ -34,6 +34,22 @@ function render(){
   }
   list('universeGainers',panel.gainers);
   list('universeLosers',panel.losers);
+  const leaders=el('universeLeaders');
+  if(leaders){
+    const ranked=(data?.leaders||[]).slice(0,7);
+    leaders.replaceChildren();
+    for(const [index,card] of ranked.entries()){
+      const line=document.createElement('div');
+      line.className='wideRow';
+      const name=document.createElement('span');
+      name.textContent=(index+1)+'. '+card.name+' — '+card.set+' ('+card.variant+')';
+      const value=document.createElement('strong');
+      value.textContent='$'+Number(card.usd).toFixed(2);
+      line.append(name,value);leaders.append(line);
+    }
+    if(!ranked.length)leaders.textContent='Market leaders appear after the next successful catalogue refresh.';
+  }
+
 }
 async function update(){
   try{
