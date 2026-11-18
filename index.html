@@ -21,6 +21,15 @@
       <div class="market-stats"><div class="market-tile"><small>Observed sales value · 30D</small><strong id="marketVolume">—</strong><span id="marketVolumeMeta">Verifiable sample only</span></div><div class="market-tile"><small>Market breadth · 30D</small><strong id="marketBreadth">—</strong><span id="marketBreadthMeta">Requires historical comps</span></div><div class="market-tile"><small>Tracked assets</small><strong id="marketAssets">0</strong><span id="marketAssetsMeta">In coverage universe</span></div><div class="market-tile sentiment-tile"><small>Fear & Greed <button class="tiny-info" data-info="fear" aria-label="About the sentiment index">ⓘ</button></small><strong id="marketSentiment">—</strong><span id="marketMood">Not enough market data</span><div class="sentiment-bar"></div></div></div>
       <div class="market-tabs" role="tablist" aria-label="Market tables"><button class="market-tab selected" data-market-view="movers">Top movers</button><button class="market-tab" data-market-view="gainers">Gainers</button><button class="market-tab" data-market-view="losers">Losers</button><button class="market-tab" data-market-view="signals">Signals</button></div>
       <div class="market-table-header"><span>Card</span><span>30D</span><span>Raw · GBP</span></div><div id="marketTable" class="market-table"><div class="market-empty">Market rankings will appear after matching historical sales are available.</div></div>
+      <div class="guide-movers-section">
+        <div class="sectionHead"><h3>Market movers · price guides</h3><button class="help" data-info="quotes" aria-label="About guide-price movers">i</button></div>
+        <div class="market-tabs guide-period-tabs" role="group" aria-label="Guide price movement period">
+          <button type="button" class="market-tab selected" data-guide-days="7">This week</button>
+          <button type="button" class="market-tab" data-guide-days="30">This month</button>
+        </div>
+        <div id="guideMovers" class="guide-movers-list"><div class="market-empty">Guide-price movements will appear when historical snapshots become available.</div></div>
+        <p class="muted small guide-disclaimer">Percentage changes compare the same provider, currency and card printing. These are guide-price movements, not completed sales.</p>
+      </div>
       <div class="quote-section"><div class="sectionHead"><h3>Market guides</h3><button class="help" data-info="quotes" aria-label="About price guides">i</button></div><div id="quoteBoard" class="quote-board"><div class="market-empty">Scheduled provider quotes are not populated yet. Enable the GitHub Action to refresh the sample cards.</div></div></div>
       <div class="market-footnote">Prices and signals use exact-printing records. Data coverage matters more than a synthetic live ticker. <button class="text-link" data-info="market">Methodology ⓘ</button></div></div>
       <div class="sectionHead searchHead"><h3>Find a card</h3><button class="help" data-info="search" aria-label="About card lookup">i</button></div>
