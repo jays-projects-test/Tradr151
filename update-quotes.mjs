@@ -1,7 +1,7 @@
 // Scheduled, public TCGdex price-guide snapshots. These are marketplace reference quotes,
 // not sold transactions and cannot support a 24h trading volume or RSI calculation.
 import fs from 'node:fs/promises';
-const folder=new URL('../data/',import.meta.url);
+const folder=new URL('./data/',import.meta.url);
 const config=JSON.parse(await fs.readFile(new URL('featured-cards.json',folder),'utf8'));
 const prev=JSON.parse(await fs.readFile(new URL('quotes.json',folder),'utf8'));
 const now=new Date().toISOString();
