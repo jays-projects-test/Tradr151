@@ -38,56 +38,54 @@ async function loadExternalFeed(){try{let res=await fetch(`data/market-feed.json
 function csvRows(text){let rows=[],row=[],field='',quoted=false;for(let i=0;i<text.length;i++){let c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){field+='"';i++}else quoted=!quoted}else if(c===','&&!quoted){row.push(field);field=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field=''}else field+=c}row.push(field);if(row.some(x=>x.trim()))rows.push(row);return rows}
 async function importSalesCSV(file){let grid=csvRows(await file.text());if(grid.length<2)throw Error('CSV has no sale records');let cols=grid[0].map(x=>x.trim().toLowerCase());const required=['card_id','date','grade','price_gbp','source'];if(required.some(x=>!cols.includes(x)))throw Error('Required columns: '+required.join(', '));const rows=grid.slice(1).map(a=>Object.fromEntries(cols.map((x,i)=>[x,(a[i]||'').trim()])));let good=[],bad=0;for(let x of rows){let item={card_id:x.card_id,date:x.date,grade:x.grade.toLowerCase(),price:Number(x.price_gbp),source:x.source,external_id:x.external_id||'',provenance:'user-verified'};if(validSale(item))good.push(item);else bad++}if(!good.length)throw Error('No valid records. Check exact card IDs like en:base1-4, dates and GBP amounts.');let w=getState();w.comps ||= {};let existing=new Set(allSales(w).map(s=>s.external_id?`${s.source}|${s.external_id}`:`${s.card_id}|${s.date}|${s.grade}|${s.price}|${s.source}`));let added=0;for(let s of good){let token=s.external_id?`${s.source}|${s.external_id}`:`${s.card_id}|${s.date}|${s.grade}|${s.price}|${s.source}`;if(existing.has(token))continue;existing.add(token);(w.comps[s.card_id] ||= []).push({date:s.date,grade:s.grade,price:s.price,source:s.source,provenance:s.provenance,external_id:s.external_id});added++}window.TradrBridge?.save();renderMarket();renderIndicators();return `${added} matched sales imported · ${bad} rejected · ${good.length-added} duplicate(s). User-verified, not independently audited.`}
 
+
 function guideMoveRows(days){
   const groups=new Map();
   for(const p of guideHistory){
     if(!p || !p.card_id || !p.provider || !p.variant || !p.currency || !Number.isFinite(+p.price) || +p.price<=0)continue;
-    const ts=Date.parse(p.observed_at);
-    if(!Number.isFinite(ts))continue;
+    const ts=Date.parse(p.observed_at);if(!Number.isFinite(ts))continue;
     const key=[p.card_id,p.provider,p.variant,p.currency].join('|');
     if(!groups.has(key))groups.set(key,[]);
     groups.get(key).push({...p,ts});
   }
   const now=Date.now(),rows=[];
-  for(const obs of groups.values()){
-    obs.sort((a,b)=>a.ts-b.ts);
-    const latest=obs.at(-1);
-    if(!latest || now-latest.ts>3*DAY)continue;
-    const cutoff=latest.ts-days*DAY;
-    const old=obs.filter(p=>p.ts<=cutoff).at(-1);
-    if(!old)continue;
-    const pct=100*(Number(latest.price)/Number(old.price)-1);
-    if(!Number.isFinite(pct))continue;
+  for(const observations of groups.values()){
+    observations.sort((a,b)=>a.ts-b.ts);
+    const latest=observations.at(-1);if(!latest || now-latest.ts>3*DAY)continue;
+    const previous=observations.filter(p=>p.ts<=latest.ts-days*DAY).at(-1);
+    if(!previous)continue;
+    const pct=100*(Number(latest.price)/Number(previous.price)-1);if(!Number.isFinite(pct))continue;
     rows.push({card_id:latest.card_id,name:latest.name||latest.card_id,provider:latest.provider,variant:latest.variant,currency:latest.currency,price:+latest.price,pct});
   }
-  // Avoid treating duplicate providers and variants as independent winners of one card.
   rows.sort((a,b)=>Math.abs(b.pct)-Math.abs(a.pct));
-  const unique=new Map();
-  for(const row of rows){if(!unique.has(row.card_id))unique.set(row.card_id,row);}
+  const unique=new Map();for(const row of rows)if(!unique.has(row.card_id))unique.set(row.card_id,row);
   return [...unique.values()];
 }
 function renderGuideMovers(){
   const host=$m('guideMovers');if(!host)return;
   const rows=guideMoveRows(guideDays);
-  const makeList=(heading,values)=>'<div class="guide-group"><b>'+heading+'</b>'+values.slice(0,5).map(p=>{
-    const symbol=p.currency==='USD'?'.forEach(b=>b.addEventListener('click',()=>{marketView=b.dataset.marketView;document.querySelectorAll('[data-market-view]').forEach(x=>x.classList.toggle('selected',x===b));renderMarket()}));$m('salesCsv')?.addEventListener('change',async e=>{let file=e.target.files?.[0];if(!file)return;try{$m('importStatus').textContent=await importSalesCSV(file)}catch(err){$m('importStatus').textContent='Import failed: '+err.message}e.target.value=''});document.addEventListener('click',e=>{if(e.target.closest('[data-tab="discover"]'))renderMarket();if(e.target.closest('[data-index], [data-market-id], [data-open]'))setTimeout(renderIndicators,150)});$m('saveSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));$m('clearSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));window.addEventListener('tradr:changed',()=>{renderMarket();renderIndicators()});loadExternalFeed();loadQuotes();loadGuideHistory();}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-:p.currency==='EUR'?'€':p.currency==='GBP'?'£':'¥';
-    return '<div class="guide-mover-row"><div class="guide-asset"><b>'+clean(p.name)+'</b><small>'+clean(p.provider)+' · '+clean(p.variant)+'</small></div><div class="guide-result '+(p.pct>=0?'up':'down')+'"><strong>'+(p.pct>=0?'+':'')+p.pct.toFixed(1)+'%</strong><small>'+symbol+p.price.toFixed(2)+'</small></div></div>';
-  }).join('')+'</div>';
-  if(!rows.length){host.innerHTML='<div class="market-empty">Historical guide-price changes are not available yet. Tradr151 is now saving daily snapshots; '+guideDays+'-day rankings will appear once there are comparable observations.</div>';return;}
-  const up=rows.filter(r=>r.pct>0).sort((a,b)=>b.pct-a.pct);
-  const down=rows.filter(r=>r.pct<0).sort((a,b)=>a.pct-b.pct);
-  host.innerHTML=makeList('Biggest gainers',up.length?up:[])+makeList('Biggest losers',down.length?down:[]) + '<p class="muted small">Coverage: '+rows.length+' cards with '+guideDays+'-day matched guide prices. Not verified sold sales.</p>';
+  const makeList=(heading,items)=>{
+    const html=items.slice(0,5).map(p=>{
+      const symbol=p.currency==='USD'?'$':p.currency==='EUR'?'€':p.currency==='GBP'?'£':'¥';
+      return '<div class="guide-mover-row"><div class="guide-asset"><b>'+clean(p.name)+'</b><small>'+clean(p.provider)+' · '+clean(p.variant)+'</small></div><div class="guide-result '+(p.pct>=0?'up':'down')+'"><strong>'+(p.pct>=0?'+':'')+p.pct.toFixed(1)+'%</strong><small>'+symbol+p.price.toFixed(2)+'</small></div></div>';
+    }).join('');
+    return '<div class="guide-group"><b>'+heading+'</b>'+(html||'<p class="muted small">No qualifying movement</p>')+'</div>';
+  };
+  if(!rows.length){
+    host.innerHTML='<div class="market-empty">Historical guide-price changes are not available yet. Daily snapshots are being collected; '+guideDays+'-day rankings require older comparable observations.</div>';
+    return;
+  }
+  const up=rows.filter(r=>r.pct>0).sort((a,b)=>b.pct-a.pct),down=rows.filter(r=>r.pct<0).sort((a,b)=>a.pct-b.pct);
+  host.innerHTML=makeList('Biggest gainers',up)+makeList('Biggest losers',down)+'<p class="muted small">Coverage: '+rows.length+' cards with '+guideDays+'-day matched guide quotes. Not verified sales.</p>';
 }
 async function loadGuideHistory(){
   try{
     const r=await fetch('data/quote-history.json?t='+Math.floor(Date.now()/300000),{cache:'no-cache'});
     if(!r.ok)throw Error('History not published');
     const data=await r.json();guideHistory=Array.isArray(data.observations)?data.observations:[];
-  }catch(e){console.info('Guide history unavailable',e.message);}
+  }catch(e){console.info('Guide history unavailable:',e.message);}
   renderGuideMovers();
 }
 
-function init(){document.querySelectorAll('[data-guide-days]').forEach(b=>b.addEventListener('click',()=>{guideDays=Number(b.dataset.guideDays)||7;document.querySelectorAll('[data-guide-days]').forEach(x=>x.classList.toggle('selected',x===b));renderGuideMovers()}));document.querySelectorAll('[data-market-view]').forEach(b=>b.addEventListener('click',()=>{marketView=b.dataset.marketView;document.querySelectorAll('[data-market-view]').forEach(x=>x.classList.toggle('selected',x===b));renderMarket()}));$m('salesCsv')?.addEventListener('change',async e=>{let file=e.target.files?.[0];if(!file)return;try{$m('importStatus').textContent=await importSalesCSV(file)}catch(err){$m('importStatus').textContent='Import failed: '+err.message}e.target.value=''});document.addEventListener('click',e=>{if(e.target.closest('[data-tab="discover"]'))renderMarket();if(e.target.closest('[data-index], [data-market-id], [data-open]'))setTimeout(renderIndicators,150)});$m('saveSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));$m('clearSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));window.addEventListener('tradr:changed',()=>{renderMarket();renderIndicators()});loadExternalFeed();loadQuotes();}
+function init(){document.querySelectorAll('[data-guide-days]').forEach(b=>b.addEventListener('click',()=>{guideDays=Number(b.dataset.guideDays)||7;document.querySelectorAll('[data-guide-days]').forEach(x=>x.classList.toggle('selected',x===b));renderGuideMovers()}));document.querySelectorAll('[data-market-view]').forEach(b=>b.addEventListener('click',()=>{marketView=b.dataset.marketView;document.querySelectorAll('[data-market-view]').forEach(x=>x.classList.toggle('selected',x===b));renderMarket()}));$m('salesCsv')?.addEventListener('change',async e=>{let file=e.target.files?.[0];if(!file)return;try{$m('importStatus').textContent=await importSalesCSV(file)}catch(err){$m('importStatus').textContent='Import failed: '+err.message}e.target.value=''});document.addEventListener('click',e=>{if(e.target.closest('[data-tab="discover"]'))renderMarket();if(e.target.closest('[data-index], [data-market-id], [data-open]'))setTimeout(renderIndicators,150)});$m('saveSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));$m('clearSales')?.addEventListener('click',()=>setTimeout(()=>{renderMarket();renderIndicators()},50));window.addEventListener('tradr:changed',()=>{renderMarket();renderIndicators()});loadExternalFeed();loadQuotes();loadGuideHistory();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
