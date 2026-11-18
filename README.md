@@ -1,48 +1,86 @@
-# Tradr151 — Pokémon Card Market Intelligence (starter MVP)
+# Tradr151 V3 — a trading-terminal interface for Pokémon cards
 
-An original, dark, trading-inspired static website built for GitHub Pages. No build step needed.
+Original, static, mobile-first app. Deploy on GitHub Pages without a framework or build process. No fake prices, fake transactions or filler datasets.
 
-## Features that work now
-- Search English/Japanese/French card catalogue with TCGdex, show images, set and card ID. Requires internet.
-- Show available TCGdex market guide quotes (USD or EUR as supplied, **not** GBP and **not** sold comps).
-- Upload a photo **preview**, then manually identify the matching card. AI automatic photo identification is not included in this version.
-- Record actual sold comps by date, grade and GBP amount; view observed raw all-time high/low **within recorded data** and history chart.
-- An explicit, experimental composite score using historical comps, not fabricated prices. Needs 5 raw comps, of which 3 are recent.
-- Watchlist and portfolio with quantity and purchase cost; local browser storage works without sign-in.
-- Optional Supabase magic-link authentication and a user-isolated cloud workspace.
-- Export/import JSON backup; research scanner ranks saved cards with sufficient data.
+## What's included
 
-## Deploy to GitHub Pages
-1. Make a public GitHub repository named `tradr151` (or any name).
-2. Upload `index.html`, `styles.css`, and `app.js` to the repository root. (You can upload the other files for documentation too.)
-3. In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, `main` and `/ (root)`.
-4. Your URL should be `https://YOUR-USERNAME.github.io/tradr151/`.
-5. HTTPS and the hosted page are public even if your personal data is stored privately in Supabase. Do not put secrets in the repo.
+- Market overview inspired by **the design category** of financial market apps, not copied artwork, branding, or layouts.
+- Verified-sample 30-day raw sales value, 30-day market breadth, tracked printings, and a **conditional, experimental** Pokémon sentiment proxy (available only with 20 qualifying cards).
+- Movers, gainers, losers and raw median valuations, with minimum samples of 3 sales in each of two consecutive 30-day windows.
+- TCGdex live card search for EN, JP and FR, card images and available TCGplayer / Cardmarket guide price estimates. The app does not confuse quote prices with completed transactions.
+- Card page: raw and PSA 9/10 recorded-sale medians, observed high/low, price chart, a basic transparent signal, 14-day-closing RSI on actual daily medians, 30-day change, observed price-range position and PSA-10 gross price premium.
+- Watchlists, portfolio, backup JSON and optional email magic-link sign-in via Supabase.
+- Photograph preview and **manual** matching. Automatic AI card identification is **not** implemented.
+- CSV import of user-checked completed-sales data; source and printing checks, date and price validation and deduplication. Import is not independently audited.
+- Free scheduled GitHub Actions refresher that requests TCGdex pricing for selected cards every six hours and publishes USD and EUR guide snapshots. **This is not automated sold-sales ingestion.**
+- Optional `data/market-feed.json` read-only adapter for authorized, external sold-sale records and listings.
 
-## Enable cloud sync & authentication
-1. Create a Supabase project.
-2. Run the SQL in `supabase.sql` using Supabase's SQL editor. Enable Row Level Security (already in script).
-3. In Supabase Auth settings, enable Email (magic links). Set **Site URL** to your GitHub Pages URL and add that same URL to **Redirect URLs**.
-4. Visit the app → Settings. Paste only your Supabase project URL and **public publishable/anon** key. Do not use secret keys.
-5. Click Sign in and enter your email. Your workspace will sync to your own account. Existing cloud data overrides local data on login; export a backup first if uncertain.
+## GitHub Pages installation
 
-## IMPORTANT — what is not implemented / not genuine yet
-- No backend price-history API integration or licensed historical completed-sale data.
-- No reliable PSA population, PSA 9/10 valuations, social sentiment, or true market-wide ATH/ATL. Those show No data until real comps entered.
-- No photo recognition or AI agent yet; uploaded images aren't sent to a third-party provider.
-- No auto-scan across all Pokémon cards. The research lab scores researched/saved cards only.
-- No direct automated currency conversion (raw provider quotes retain native USD/EUR).
-- The scoring model is a prototype, not statistical proof of future returns. It never substitutes asking prices for actual sales.
-- Saved Supabase settings are stored in localStorage. The public Supabase publishable key is designed for client-side use; protected data requires database RLS. Never expose provider secret tokens.
+1. Upload **all files and folders** from the ZIP to the root of repository `tradr151`. Keep the `.github/workflows` directory and `data/` folder structure. Do not upload the ZIP itself as a single file.
+2. Repo → Settings → Pages → **Deploy from a branch** → `main` → `/(root)` → Save.
+3. Open `https://jays-projects-test.github.io/tradr151/` once published. Hard-refresh the browser if it shows the previous design.
+4. Repo → Actions → **Refresh public card guide quotes** → **Run workflow**. This is optional but populates the quote board. Give Actions `Read and write permissions` if the workflow's commit is denied. Scheduled workflows can be delayed or disabled after inactivity.
+5. To edit featured snapshot cards, edit `data/featured-cards.json` with up to 40 **exact TCGdex IDs**. Re-run workflow. This refreshes marketplace guides, not card sale histories.
+6. Optional private account: create a project at [Supabase](https://supabase.com); run `supabase.sql` in SQL Editor; configure Auth Site URL + Redirect URL for your GitHub Pages address; on Tradr151 go to More → Cloud sync. Use ONLY the public publishable/anon key. RLS must stay enabled.
+7. Optional import: More → **Import completed sales** → upload a CSV with `card_id,date,grade,price_gbp,source,external_id`. A header-only template is in `data/sales-template.csv`. Card ID is `en:base1-4` (language colon exact TCGdex ID); grades are `raw`, `psa9`, or `psa10`. Use only genuine completed sales and list the source. The importer cannot verify your assertion.
 
-## Recommended next phase for real investment research
-- Add a secured serverless proxy (Supabase Edge Function or Cloudflare Worker) for PkmnPrices/PriceCharting/historical sold comps.
-- Normalize listing title, grading company, grade, language, edition, finish, sale date, shipping, and location; reject bundles and mismatches.
-- Daily price snapshots via scheduled GitHub Actions or serverless cron; retain immutable source and observed timestamps.
-- Add paid source or user-verified import for PSA population and raw/PSA 9/PSA 10 sold sales.
-- Add Gemini vision/OCR behind a secured Edge Function. Have users confirm match before fetching values. Never expose AI key in GitHub Pages JS.
-- Calculate hype from measured change in sales volume, price and listing availability; do not let LLMs fabricate a numeric signal.
-- Add realistic grading EV with expected grade probabilities, grading fees, postage, marketplace fees and estimated selling time.
+## Inputs and coverage requirements
 
-## Disclaimer
-Tradr151 is independent and not affiliated with Trading 212, Pokémon, Nintendo or PSA. This app is a research prototype, not financial advice.
+**Actual observed sample volume**: Sum of matched verified/user-verified raw completed-sales prices in last 30 days. Not global volume. Duplicate records are removed by source/sale ID when available; otherwise on card/date/grade/price/source. User import provenance is labelled user-verified, not independently audited.
+
+**Observed breadth**: Of cards with at least 3 raw sales in latest 30D and at least 3 raw sales in preceding 30D, percent with positive change in period medians. Displays only if at least five cards qualify.
+
+**Return/movers**: `(median raw price latest 30D / median raw price preceding 30D - 1) × 100`. Both periods require at least 3 observations.
+
+**Experimental observed-sample sentiment proxy**: Requires at least 20 cards with 3+ trades in each period. Combines bounded relative median momentum (30%), sample sales-volume acceleration (25%), breadth (30%), and cross-sectional price stability (15%). It is not the global Pokémon Fear & Greed Index. Collectors can manipulate small markets, so data coverage and cross-provider checks are essential. Full index would additionally need representative data, search/social trends, robust provenance and volume over more history.
+
+**RSI 14**: Simple 14-period closing gains/losses over a card's latest 15 distinct daily raw-sale median closes; incomplete days are not forward-filled. This differs from traditional exchange daily close (and is noisy in illiquid markets). Under 30 is technically oversold; over 70 is technically overbought. Neither means intrinsically under/overvalued.
+
+**PSA premium**: `100 × (PSA10 sold median / raw sold median - 1)` calculated only when both grades have matched sale observations. This is **not** expected grading profit.
+
+**Confidence**: Existing experimental buy/hold/sell model requires 5 raw sales, including 3 in 90D, and is appropriately labelled low/medium. It is NOT backtested investment advice. More sophisticated grade-specific fair-value, cross-market weighting, spreads, population changes and grading EV remain future work.
+
+## Data sources and restrictions
+
+| Source | Available now | Limits |
+| --- | --- | --- |
+| TCGdex | Free card catalogue and marketplace guide quotes; works immediately | Some eras missing, variant matching not always reliable, not verified sold comps |
+| TCGplayer via TCGdex | Available USD guide quotes | Not separate independent sales evidence (TCGdex is an aggregator) |
+| Cardmarket via TCGdex | Available EUR guide quotes | Different currency and supply geography; don't average USD/EUR directly |
+| CSV completed-sale import | User-supplied actual sale records | Must verify grade/variant/authenticity/source yourself |
+| PkmnPrices | Optional API (not connected to V3) | Free 500 credits/day includes daily market data; graded populations/eBay sold comps require paid plan |
+| PriceCharting | Potential licensed paid quote data | API does not provide historical sales/history |
+| eBay | Listings via approved API access; sold comps restricted | Marketplace Insights sold API is Limited Release; don't scrape against site rules |
+| Supabase | Free-tier secure user account and saved data | RLS, project URL and public key setup needed |
+| GitHub Actions | Free-tier scheduled snapshot updates | Scheduled jobs aren't guaranteed real-time; public Actions workflow can pause after inactivity |
+
+### External feed schema (`data/market-feed.json`)
+
+```
+{
+  "schema_version":1,
+  "updated_at":"2026-11-18T00:00:00Z",
+  "sales":[
+    {"card_id":"en:base1-4","date":"2026-11-16","grade":"raw","price":75,
+      "source":"approved-provider","provenance":"verified-provider","external_id":"sale-123"}
+  ],
+  "listings":[]
+}
+```
+
+The `sales` example above is **schema only and invented to illustrate the format**. The shipped feed contains zero records; never publish that example as a real sale. Do not publish private records, private customer data, or paywalled source data in a public Pages repository without redistribution permission. Use a secure backend for API credentials and sensitive feeds.
+
+## Roadmap toward a real market terminal
+
+1. Secure a legitimate completed-sale feed with reliable **card variant**, **grade**, **sale date**, **sale price**, **listing URL/ID**, and applicable rights; this is the main blocker.
+2. Store normalized sales and active listings in Supabase with deduplication, audit timestamps, provider/source metadata, and per-variant IDs. Run nightly or hourly incremental ingestion using server-side credentials.
+3. Add exchange-rate conversion on transaction date, shipping/fees, seller region, and transparent marketplace spreads; compare actual matched variants rather than mixing 1st Edition/unlimited or holo/nonholo.
+4. Build active listing tracking, actual sell-through (sold / listed during a defined window), offer-price distribution, snapshot history, and provenance-based trust scores. Do **not** treat ask prices as realized sales.
+5. Expand standardized market coverage and compute defensible sentiment measures only after reaching statistically useful breadth and freshness.
+6. Add PSA, BGS, CGC population datasets where licensed, grade probability modelling, realistic grading fees and liquidity discounts.
+7. Add optional server-side photo identification AI with exact-print confirmation and optional search/social interest indices with permitted APIs.
+
+## Security & deployment notes
+
+GitHub Pages is public static hosting, not a private backend. Never commit a service-role key, private provider tokens, credentials or other secrets. Supabase browser client uses a public key plus strict RLS. CSV and sample feed are designed to contain market records only; do not commit personal information. GitHub scheduled Actions commit public guide prices and metadata. Provider terms may restrict public redistribution, so verify for production use.
