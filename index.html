@@ -44,11 +44,10 @@
   <div><small>Price feed</small><strong class="feed-status" id="gaugeFresh">Daily</strong><span id="gaugeFreshSub">Checks for updates hourly</span></div>
  </div>
 </div>
-        <div class="universeHeader"><div><span class="market-kicker">THE POKÉMON MARKET</span><h3>Market pulse <button class="tiny-info" data-info="market" title="Guide-price market coverage">ⓘ</button></h3></div><span class="universeFreshness" id="universeFreshness">Connecting market feed</span></div>
-        <div class="universeStats universeStatsLegacy" hidden>
-          <div><small>Priced products</small><strong id="universeCards">—</strong><span id="universeCoverage">Scanning catalogue</span></div>
-          <div><small>7D market median</small><strong id="universeWeek">—</strong><span>Comparable guide prices</span></div>
-          <div><small>30D market median</small><strong id="universeMonth">—</strong><span>Comparable guide prices</span></div>
+        <div class="market-data-banner">
+          <span class="market-data-led"></span>
+          <span><strong>US market guide data</strong> · Latest snapshot <span id="universeFreshness">checking…</span></span>
+          <button type="button" class="tiny-info" data-info="market" aria-label="Market data methodology">ⓘ</button>
         </div>
         <div class="market-product-search">
   <div class="market-product-search-bar"><input type="search" id="marketProductSearch" placeholder="Search market cards by name, set or number..." aria-label="Search market-wide products"><button type="button" id="marketProductSearchButton">Search market</button></div>
@@ -58,7 +57,7 @@
           <div><h4><span class="rise">↗</span> Biggest gainers</h4><div id="universeGainers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
           <div><h4><span class="fall">↘</span> Biggest losers</h4><div id="universeLosers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
         </div>
-        <div class="universeLeaders"><h4>Highest guide prices <span class="muted small">Tracked singles · USD</span></h4><div id="universeLeaders" class="universeList"><p class="muted small">Loading market leaders...</p></div></div>
+        <div class="universeLeaders"><h4>Top card values <span class="muted small">US raw-card market guides</span></h4><div id="universeLeaders" class="universeList"><p class="muted small">Loading market leaders...</p></div></div>
         <p class="universeNote">TCGplayer market-guide price trends across an expanding card universe. Not recorded sales or a total-market-cap estimate.</p>
       </div><div class="legacyMarketData" hidden>
 <div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
