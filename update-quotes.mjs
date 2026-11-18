@@ -45,5 +45,24 @@ if (fresh===0) {
   process.exitCode=1;
 } else {
   await fs.writeFile(new URL('quotes.json',folder),JSON.stringify({updated_at:now,cards,successful_cards:fresh,failed_cards:errors.length},null,2)+'\n');
+  // Store genuine provider guide snapshots for future 7D/30D comparisons.
+  const historyFile = new URL('quote-history.json', folder);
+  let history = [];
+  try { const prior = JSON.parse(await fs.readFile(historyFile,'utf8')); history = Array.isArray(prior)?prior:prior.observations||[]; } catch {}
+  const day=now.slice(0,10);
+  const cutoff=Date.now()-185*86400000;
+  history=history.filter(r=>r&&r.observed_at&&Date.parse(r.observed_at)>=cutoff);
+  const seen=new Set(history.map(r=>[r.card_id,r.provider,r.variant,r.currency,r.observed_at.slice(0,10)].join('|')));
+  for(const card of cards.filter(c=>!c.stale&&c.observed_at===now)){
+    const entries=[
+      ...(card.tcgplayer_variants||[]).filter(v=>Number.isFinite(v.guide_usd)).map(v=>({card_id:`${card.language}:${card.id}`,name:card.name,provider:'TCGplayer via TCGdex',variant:v.variant,currency:'USD',price:v.guide_usd,observed_at:now})),
+      ...(Number.isFinite(card.cardmarket_guide_eur)?[{card_id:`${card.language}:${card.id}`,name:card.name,provider:'Cardmarket via TCGdex',variant:'market_guide',currency:'EUR',price:card.cardmarket_guide_eur,observed_at:now}]:[])
+    ];
+    for(const row of entries){
+      const key=[row.card_id,row.provider,row.variant,row.currency,day].join('|');
+      if(!seen.has(key)){history.push(row);seen.add(key);}
+    }
+  }
+  await fs.writeFile(historyFile,JSON.stringify({updated_at:now,observations:history},null,2)+'\n');
   console.log(`Saved ${fresh} fresh cards; ${errors.length} stale or missing`);
 }
