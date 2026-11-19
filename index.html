@@ -26,6 +26,11 @@
   <div class="currency-toggle" role="group" aria-label="Display currency"><button type="button" data-currency="USD" class="selected">USD</button><button type="button" data-currency="GBP">GBP</button></div>
 </div>
 
+<section class="benchmarkCompare" aria-label="Pokémon investment performance compared with financial markets">
+ <div class="benchmarkTop"><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
+ <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
+ <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div><p class="benchmarkInstruction">Select an asset to view its historical price chart</p>
+</section>
 <div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
  <div class="tradr-gauge">
   <div class="gauge-heading"><span>POKÉMON MARKET PERFORMANCE</span></div>
@@ -67,11 +72,7 @@
         </div>
         
       </div>
-<section class="benchmarkCompare" aria-label="Pokémon investment performance compared with financial markets">
- <div class="benchmarkTop"><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
- <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
- <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
-</section><div class="legacyMarketData" hidden>
+<div class="legacyMarketData" hidden>
 <div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
       <div class="market-stats"><div class="market-tile"><small>Observed sales value · 30D</small><strong id="marketVolume">—</strong><span id="marketVolumeMeta">Verifiable sample only</span></div><div class="market-tile"><small>Market breadth · 30D</small><strong id="marketBreadth">—</strong><span id="marketBreadthMeta">Requires historical comps</span></div><div class="market-tile"><small>Tracked assets</small><strong id="marketAssets">0</strong><span id="marketAssetsMeta">In coverage universe</span></div><div class="market-tile sentiment-tile"><small>Fear & Greed <button class="tiny-info" data-info="fear" aria-label="About the sentiment index">ⓘ</button></small><strong id="marketSentiment">—</strong><span id="marketMood">Not enough market data</span><div class="sentiment-bar"></div></div></div>
       <div class="market-tabs" role="tablist" aria-label="Market tables"><button class="market-tab selected" data-market-view="movers">Top movers</button><button class="market-tab" data-market-view="gainers">Gainers</button><button class="market-tab" data-market-view="losers">Losers</button><button class="market-tab" data-market-view="signals">Signals</button></div>
@@ -137,4 +138,10 @@
  <div class="market-card-body" id="marketCardBody"><p class="muted">Loading card details...</p></div>
 </dialog>
 <dialog id="aboutTradrDialog" class="about-tradr-dialog"><div class="about-dialog-heading"><img src="assets/tradr151-logo.png" width="44" height="44" alt=""><button type="button" id="closeAboutTradr" aria-label="Close">×</button></div><h2>Discover smarter. Collect better.</h2><p>Tradr151 brings Pokémon card market insights together in one place.</p><div class="about-features"><div><strong>Explore the market</strong><span>Follow card values, trends and market sentiment.</span></div><div><strong>Find hidden gems</strong><span>Spot price changes and research potential opportunities.</span></div><div><strong>Research every card</strong><span>Review available valuations and evidence-based buy, hold or sell indicators.</span></div><div><strong>Track your collection</strong><span>Build portfolios, record purchase costs and monitor performance.</span></div></div></dialog>
+<dialog id="benchmarkChartDialog" class="benchmark-chart-dialog" aria-label="Historical market trend">
+ <div class="benchmark-dialog-header"><div><span class="benchmarkEyebrow">MARKET PERFORMANCE</span><h2 id="benchmarkChartTitle">Pokémon</h2><p id="benchmarkChartSubtitle" class="muted small">September 2021 – 2026</p></div><button type="button" id="benchmarkChartClose" aria-label="Close chart">×</button></div>
+ <div class="benchmark-chart-value"><strong id="benchmarkChartReturn">—</strong><span id="benchmarkChartPeriod">Historical total return</span></div>
+ <div id="benchmarkChartHost" class="benchmark-chart-host" aria-live="polite"><p class="muted">Loading historical prices…</p></div>
+ <div class="benchmark-chart-foot"><span id="benchmarkChartFoot">Historical index data</span></div>
+</dialog>
 </body></html>
