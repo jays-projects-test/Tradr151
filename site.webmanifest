@@ -1,0 +1,18 @@
+{
+  "name": "Tradr151 — Pokémon Market Insights",
+  "short_name": "Tradr151",
+  "description": "Pokémon market intelligence and portfolio tracking",
+  "start_url": "/Tradr151/",
+  "scope": "/Tradr151/",
+  "display": "standalone",
+  "background_color": "#080d14",
+  "theme_color": "#080d14",
+  "icons": [
+    {
+      "src": "assets/tradr151-logo.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
