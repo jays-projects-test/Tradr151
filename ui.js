@@ -16,7 +16,9 @@ const INFO={
  'gem-gaps':['Pricing gaps','Compares a card’s market guide with available asking-price guides. Large gaps can be worth investigating, but are not confirmed discounts.'],
  'gem-aftermarket':['AI — Aftermarket Intelligence','Research low PSA 10 populations, low gem rates, raw-to-PSA 10 grading upside and potential undervaluation. Accurate rankings require matched PSA population, raw prices and completed graded sales. These feeds are not connected yet.'],
  'gem-social':['SI — Social Intelligence','Planned Grok/X integration for Pokémon news, product drops, notable sales, card hype and collector sentiment. Events will be sourced and verified before contributing to market signals. No live social feed is connected yet.'],
- 'gem-saved':['My researched cards','Review cards in your watchlist or portfolio and inspect their available market signals.']
+ 'gem-saved':['My researched cards','Review cards in your watchlist or portfolio and inspect their available market signals.'],
+ 'cap-method':['How market sizes are measured','Pokémon uses the estimated value of tracked graded slabs, not all raw cards or sealed products. Bitcoin uses circulating supply times price. S&P 500 is the combined market value of its listed companies. Other hobby market values are included only where sufficient population and pricing coverage exists; estimates are not directly equivalent.'],
+ 'record-sales':['Record trading-card sales','Ranks documented historical individual-card transactions across Pokémon, sports and other TCGs in USD. Public auction results and reported private transactions are labelled separately. This is a curated research list, not an exhaustive global sales database or a live market feed.']
 };
 const infoDialog=document.getElementById('infoDialog');
 document.addEventListener('click',e=>{const trigger=e.target.closest('[data-info]');if(trigger){const item=INFO[trigger.dataset.info];if(item){document.getElementById('infoTitle').textContent=item[0];document.getElementById('infoText').textContent=item[1];infoDialog.showModal();}}});
