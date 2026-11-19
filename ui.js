@@ -10,7 +10,13 @@ const INFO={
  signal:['Tradr signal','An experimental scoring model combines your recorded price momentum, the last sale versus recent median, transaction count, volatility and sample size. At least five raw sales, three within 90 days, are required. It cannot assess social hype or predict future prices yet.'],
  watchlist:['Watchlist','Save cards you want to monitor. Data stays on this device until optional cloud sync is configured.'],
  portfolio:['Portfolio','Track the cards you own, their quantities and your purchase cost. This is a collection tracker, not a trading brokerage.'],
- gems:['Gem scanner','Scans saved cards with enough actual completed sales to compute a score. It does not automatically discover market-wide opportunities without a broader historical sales dataset.']
+ gems:['Gem scanner','Explore market-wide price drops, momentum and pricing gaps, or analyse a card by name or number. AI and SI features are being prepared.'],
+ 'gem-dips':['Price drops','Cards with a recorded seven-day guide-price decrease of at least 12%. Price movement alone is not proof of a bargain.'],
+ 'gem-momentum':['Momentum','Cards with a recorded seven-day guide-price increase of at least 12%. This tracks price movement, not verified sales volume.'],
+ 'gem-gaps':['Pricing gaps','Compares a card’s market guide with available asking-price guides. Large gaps can be worth investigating, but are not confirmed discounts.'],
+ 'gem-aftermarket':['AI — Aftermarket Intelligence','Research low PSA 10 populations, low gem rates, raw-to-PSA 10 grading upside and potential undervaluation. Accurate rankings require matched PSA population, raw prices and completed graded sales. These feeds are not connected yet.'],
+ 'gem-social':['SI — Social Intelligence','Planned Grok/X integration for Pokémon news, product drops, notable sales, card hype and collector sentiment. Events will be sourced and verified before contributing to market signals. No live social feed is connected yet.'],
+ 'gem-saved':['My researched cards','Review cards in your watchlist or portfolio and inspect their available market signals.']
 };
 const infoDialog=document.getElementById('infoDialog');
 document.addEventListener('click',e=>{const trigger=e.target.closest('[data-info]');if(trigger){const item=INFO[trigger.dataset.info];if(item){document.getElementById('infoTitle').textContent=item[0];document.getElementById('infoText').textContent=item[1];infoDialog.showModal();}}});
