@@ -1,16 +1,20 @@
 {
   "updated_at": "2026-11-19",
-  "methodology": "Each market uses a different supply definition. Graded-card values cover tracked slabs, not all raw cards or sealed products. Bitcoin is circulating supply times spot price. S&P 500 is the sum of constituent market caps. Missing values remain unavailable.",
+  "methodology": "TCG comparable values are sourced from one graded card dataset: population per grade multiplied by that grade's estimated value. They are coverage-dependent tracked totals, not all raw and sealed cards. Sports $14.5B is annual market revenue forecast, not a cap. Bitcoin and S&P caps are different assets and methodologies.",
   "markets": [
     {
       "id": "pokemon",
       "name": "Pokémon",
       "sector": "tcg",
-      "cap_usd": 10100000000,
-      "cap_label": "Tracked graded slabs",
-      "coverage": "33.6M priced PSA / CGC / BGS slabs; excludes ungraded and unmatched copies",
+      "cap_usd": 19040000000,
+      "cap_label": "Tracked graded market",
+      "coverage": "PSA, BGS and CGC population × graded value, Assetra common-source comparison; differs from CardTrack's $10.10B narrower coverage",
       "date": "2026-11-19",
-      "source": "https://cardtrack.com/pokemon/market-cap"
+      "source": "https://assetra.co/market-report",
+      "change_30d": -5.4,
+      "method": "graded",
+      "rank": 1,
+      "graded_population": 39160000
     },
     {
       "id": "bitcoin",
@@ -37,40 +41,108 @@
       "name": "One Piece",
       "sector": "tcg",
       "cap_usd": 1720000000,
-      "cap_label": "Tracked graded set value",
-      "coverage": "Assetra tracked graded sets; methodology and coverage differ from Pokémon estimate",
+      "cap_label": "Tracked graded market",
+      "coverage": "446 graded sets, Assetra; not all copies or sealed products",
       "date": "2026-11-18",
-      "source": "https://assetra.co/sets"
+      "source": "https://assetra.co/market-report",
+      "change_30d": -4.1,
+      "method": "graded",
+      "rank": 2,
+      "graded_population": 3310000
     },
     {
       "id": "magic",
       "name": "Magic: The Gathering",
       "sector": "tcg",
       "cap_usd": 289670000,
-      "cap_label": "Tracked graded set value",
-      "coverage": "Assetra's tracked PSA / BGS / CGC graded Magic card sets; partial market coverage, not all printed cards",
+      "cap_label": "Tracked graded market",
+      "coverage": "185 graded sets, Assetra",
       "date": "2026-11-19",
-      "source": "https://assetra.co/sets"
+      "source": "https://assetra.co/market-report",
+      "change_30d": 0.6,
+      "method": "graded",
+      "rank": 3,
+      "graded_population": 310000
     },
     {
       "id": "yugioh",
       "name": "Yu-Gi-Oh!",
       "sector": "tcg",
-      "cap_usd": null,
-      "cap_label": "Not established",
-      "coverage": "Tracked card price indices exist; no reliable complete-market cap verified",
+      "cap_usd": 222540000,
+      "cap_label": "Tracked graded market",
+      "coverage": "266 graded sets, Assetra; incomplete valuation of all cards",
       "date": "2026-11-19",
-      "source": "https://tcgindex.io/tcg-market-index"
+      "source": "https://assetra.co/market-report",
+      "change_30d": 10.3,
+      "method": "graded",
+      "rank": 4,
+      "graded_population": 866000
     },
     {
       "id": "sports",
       "name": "Sports cards",
       "sector": "sports",
       "cap_usd": null,
-      "cap_label": "Not established",
-      "coverage": "A single defensible market-wide stock of existing cards has not been established; annual revenue is not market cap",
+      "cap_label": "Annual market estimate",
+      "coverage": "2026 global sports trading card market forecast, annual revenue not market capitalization",
       "date": "2026-11-19",
-      "source": "https://www.theorycards.org.uk/record-book/"
+      "source": "https://www.grandviewresearch.com/industry-analysis/sports-trading-cards-market-report",
+      "annual_market_usd": 14500000000,
+      "change_30d": null,
+      "method": "annual",
+      "rank": 9
+    },
+    {
+      "id": "lorcana",
+      "name": "Disney Lorcana",
+      "sector": "tcg",
+      "cap_usd": 84740000,
+      "cap_label": "Tracked graded market",
+      "coverage": "Assetra tracked sets",
+      "source": "https://assetra.co/sets",
+      "date": "2026-11-18",
+      "change_30d": null,
+      "method": "graded",
+      "rank": 5
+    },
+    {
+      "id": "dragonball",
+      "name": "Dragon Ball",
+      "sector": "tcg",
+      "cap_usd": 79530000,
+      "cap_label": "Tracked graded market",
+      "coverage": "Assetra tracked sets",
+      "source": "https://assetra.co/sets",
+      "date": "2026-11-18",
+      "change_30d": null,
+      "method": "graded",
+      "rank": 6
+    },
+    {
+      "id": "weiss",
+      "name": "Weiss Schwarz",
+      "sector": "tcg",
+      "cap_usd": 10050000,
+      "cap_label": "Tracked graded market",
+      "coverage": "Assetra tracked sets",
+      "source": "https://assetra.co/sets",
+      "date": "2026-11-18",
+      "change_30d": null,
+      "method": "graded",
+      "rank": 7
+    },
+    {
+      "id": "digimon",
+      "name": "Digimon",
+      "sector": "tcg",
+      "cap_usd": 2100000,
+      "cap_label": "Tracked graded market",
+      "coverage": "Assetra tracked sets",
+      "source": "https://assetra.co/sets",
+      "date": "2026-11-18",
+      "change_30d": null,
+      "method": "graded",
+      "rank": 8
     }
   ],
   "sales": [
