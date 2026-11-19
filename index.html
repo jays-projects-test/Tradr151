@@ -30,16 +30,19 @@
  <div class="benchmarkTop"><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
  <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
  <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
- <div class="cap-inline-title"><span>MARKET SIZE</span><button id="capMethodButton" class="gem-info-button" type="button" aria-label="How market caps are calculated" data-info="cap-method">i</button></div>
- <div id="marketCapStrip" class="marketCapStrip" aria-label="Market size comparison"></div>
- <details class="marketExpander" id="extraMarkets"><summary>Compare other TCGs &amp; sports <span aria-hidden="true">⌄</span></summary>
-  <div class="marketExtraFilters" id="marketExtraFilters" role="group" aria-label="Collectibles category filters">
+ <div class="markets-module">
+  <div class="markets-module-title"><h4>Market overview</h4><button id="capMethodButton" class="gem-info-button" type="button" aria-label="About market values" data-info="cap-method">i</button></div>
+  <div class="markets-table-head"><span>Market</span><span>Value (USD)</span><span>30D</span></div>
+  <div id="marketCapStrip" class="marketCapStrip" aria-label="Pokémon and financial market size comparison"></div>
+  <details class="marketExpander" id="extraMarkets"><summary><span>All trading-card markets</span><span class="markets-summary-arrow" aria-hidden="true">⌄</span></summary>
+   <div class="marketExtraFilters" id="marketExtraFilters" role="group" aria-label="Collectibles category filters">
     <button type="button" class="selected" data-extra-market="all">All</button>
-    <button type="button" data-extra-market="tcg">Other TCGs</button>
-    <button type="button" data-extra-market="sports">Sports cards</button>
-  </div>
-  <div id="marketExtraRows" class="marketExtraRows"></div>
- </details>
+    <button type="button" data-extra-market="tcg">TCGs</button>
+    <button type="button" data-extra-market="sports">Sports</button>
+   </div>
+   <div id="marketExtraRows" class="marketExtraRows"></div>
+  </details>
+ </div>
 </section>
 <div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
  <div class="tradr-gauge">
@@ -121,7 +124,7 @@
  </div>
  <div class="recordTableHead"><span>Card</span><span>Sold price (USD)</span></div>
  <div class="recordList" id="recordSalesList"></div>
- <div class="recordFooter"><span>Historic sales, not current valuations</span><a href="https://www.theorycards.org.uk/record-book/" target="_blank" rel="noopener noreferrer">More records</a></div>
+ 
 </section>
 </section>
     <section class="tab" id="watchlist" hidden><div class="sectionHead bigSection"><div><h2>Watchlist</h2><p class="muted">Cards on your radar.</p></div><button class="help" data-info="watchlist" aria-label="About watchlist">i</button></div><div class="listPanel" id="watchlistItems"></div></section>
