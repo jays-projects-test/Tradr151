@@ -7,7 +7,7 @@ let universe=null,mode='dips',candidates=null,loaded=false;
 const pct=n=>(n>=0?'+':'')+n.toFixed(1)+'%';
 async function getData(){
  if(universe)return universe;
- $('gemFeedStatus').textContent='Scanning Tradr151 market data…';
+ $('gemFeedStatus').textContent='Scanning market…';
  const r=await fetch('data/market-universe.json',{cache:'force-cache'});
  if(!r.ok)throw Error('Market data temporarily unavailable.');
  const d=await r.json();if(!d.products||!d.observations)throw Error('Market data format unavailable.');
@@ -54,13 +54,31 @@ const button=(item)=>{
 };
 function render(){
  document.querySelectorAll('[data-gem-filter]').forEach(b=>b.classList.toggle('selected',b.dataset.gemFilter===mode));
- const host=$('gemCandidates');if(!host)return;
+ const host=$('gemCandidates'),status=$('gemFeedStatus'),refreshButton=$('gemRefreshButton'),info=$('gemSectionInfo');
+ if(!host)return;
+ const headers={dips:['Price drops','gem-dips'],momentum:['Momentum','gem-momentum'],gaps:['Pricing gaps','gem-gaps'],graded:['AI · Aftermarket Intelligence','gem-aftermarket'],social:['SI · Social Intelligence','gem-social'],saved:['My researched cards','gem-saved']};
+ const [heading,infoKey]=headers[mode]||headers.dips;
+ $('gemListTitle').textContent=heading;
+ if(info){info.dataset.info=infoKey;info.setAttribute('aria-label','About '+heading);}
+ if(refreshButton)refreshButton.hidden=['graded','social','saved'].includes(mode);
+ if(status)status.textContent='';
  if(mode==='graded'){
-  $('gemListTitle').textContent='Grading opportunities';
-  host.innerHTML='<div class="gem-note"><strong>Grading opportunities need verified data</strong><p>Cards with low PSA 10 populations, low gem rates or strong raw-to-PSA 10 returns will be ranked here when population and graded-sale feeds are connected. No grades or return estimates are guessed.</p></div>';return;
+  host.innerHTML='<div class="gem-intel-grid">'+
+   '<div class="gem-intel-item"><span>LOW POPULATION</span><b>PSA 10 scarcity</b></div>'+
+   '<div class="gem-intel-item"><span>GEM RATE</span><b>Low PSA 10 hit rates</b></div>'+
+   '<div class="gem-intel-item"><span>GRADING UPSIDE</span><b>Raw vs PSA 10</b></div>'+
+   '<div class="gem-intel-item"><span>VALUE</span><b>Potential bargains</b></div></div>'+
+   '<div class="gem-connection"><span class="gem-connection-dot"></span><div><b>Awaiting graded market data</b><small>PSA population and completed-sale feeds not connected</small></div></div>';return;
+ }
+ if(mode==='social'){
+  host.innerHTML='<div class="gem-intel-grid">'+
+   '<div class="gem-intel-item"><span>NEWS</span><b>Launches &amp; reprints</b></div>'+
+   '<div class="gem-intel-item"><span>SALES</span><b>Notable transactions</b></div>'+
+   '<div class="gem-intel-item"><span>HYPE</span><b>Trending cards</b></div>'+
+   '<div class="gem-intel-item"><span>SENTIMENT</span><b>Collector activity</b></div></div>'+
+   '<div class="gem-connection"><span class="gem-connection-dot"></span><div><b>Grok / X not connected</b><small>Social feed will appear here once configured</small></div></div>';return;
  }
  if(mode==='saved'){
-  $('gemListTitle').textContent='My researched cards';
   const w=window.TradrBridge?.getWorkspace?.();
   if(!w){host.textContent='Portfolio not ready';return;}
   const keys=[...new Set([...Object.keys(w.portfolio||{}),...(w.watchlist||[])])];
@@ -68,14 +86,12 @@ function render(){
    const c=w.cards[key];if(!c)return '';
    const signal=window.TradrBridge.signalFor(key);
    return '<div class="gem-saved"><div><b>'+escape(c.name)+'</b><small>'+escape(c.setName)+' · '+escape(c.localId)+'</small><small>'+(signal.score!==null?escape(signal.label)+' · '+signal.score+'/100':'Awaiting comparable sales')+'</small></div><button class="secondary" data-gem-saved="'+escape(key)+'" type="button">Research</button></div>';
-  }).join(''):'<div class="gem-note">Add a card to your portfolio or watchlist to research it here.</div>';
+  }).join(''):'<div class="gem-note">No saved cards yet.</div>';
   return;
  }
- if(!candidates){host.innerHTML='<div class="gem-note">Select Refresh to screen the market.</div>';return;}
+ if(!candidates){host.innerHTML='<div class="gem-note">No market results available yet.</div>';return;}
  const list=candidates.filter(r=>mode==='dips'?(r.change!==null&&r.change<=-12):mode==='momentum'?(r.change!==null&&r.change>=12):(r.gap!==null&&r.gap>=22)).slice(0,24);
- $('gemListTitle').textContent=mode==='dips'?'Largest observed price drops':mode==='momentum'?'Recent price momentum':'Cards with notable pricing gaps';
- host.innerHTML=list.length?list.map(button).join(''):'<div class="gem-note">No qualifying '+(mode==='dips'?'price drops':mode==='momentum'?'momentum signals':'pricing gaps')+' found in the current market data.</div>';
- $('gemFeedStatus').textContent='Market research shortlist · USD values. Pricing gaps compare market guides with asking-price medians; they do not establish underpricing or guarantee a buy.';
+ host.innerHTML=list.length?list.map(button).join(''):'<div class="gem-note">No matching opportunities yet.</div>';
 }
 async function refresh(){
  try{await getData();buildCandidates();loaded=true;render()}
