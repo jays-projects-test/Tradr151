@@ -55,9 +55,11 @@ def col_name(label):
 
 def ident(label):
     name = col_name(label)
+    if name.endswith("raw"):
+        return None
     if any(t in name for t in ("ct100", "cardtrack100", "pokemon100", "pokemoncards")):
         return "pokemon"
-    if "bitcoin" in name or "btcusd" in name or name == "btc":
+    if "bitcoin" in name or name.startswith("btc"):
         return "bitcoin"
     if "sp500" in name or "gspc" in name or "spx" in name or "sandp500" in name or "standardpoors500" in name:
         return "sp500"
