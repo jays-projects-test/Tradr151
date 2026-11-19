@@ -290,3 +290,7 @@
  .gem-candidates{gap:8px}
  .gem-candidate,.gem-saved{padding:13px 10px}
 }
+
+/* Wordmark only in app header: white Tradr, blue 151. Logo image remains as favicon/search preview. */
+.brand-name,.mobileBrand{color:#f2f7ff}
+.brand-name .brand-number,.mobileBrand .accent{color:var(--blue)}
