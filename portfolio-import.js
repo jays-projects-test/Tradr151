@@ -108,7 +108,7 @@ async function importFile(event){
   }
   for(const item of grouped.values()){
    const existing=workspace.portfolio[item.key];
-   workspace.cards[item.key]={...workspace.cards[item.key],...item.card};
+   workspace.cards[item.key]={...workspace.cards[item.key],...item.card,storageKey:item.key};
    if(existing){
     const oldQty=Math.max(1,Number(existing.quantity)||1);
     const totalQty=oldQty+item.qty;
