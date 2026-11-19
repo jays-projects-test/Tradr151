@@ -173,3 +173,79 @@
 #portfolioImportStatus{line-height:1.55;margin:4px 0 12px;min-height:18px}
 .listEntry label.small{white-space:nowrap}
 @media(max-width:650px){.portfolio-import-tools>*{flex:1}.listEntry{flex-wrap:wrap}.listEntry .grow{min-width:60%}}
+
+/* Tradr151 simplified product sections */
+.aboutTradrButton{background:transparent;border:1px solid #263b50;border-radius:10px;padding:10px 13px;color:#bbd2e4;font-size:12px;font-weight:650;cursor:pointer;margin-right:7px}
+.aboutTradrButton:hover{color:white;border-color:#3d83b1}
+.about-tradr-dialog{background:#101d2c;color:#ebf4ff;border:1px solid #334d65;border-radius:20px;padding:23px;width:min(430px,calc(100vw - 30px));max-height:86vh;box-shadow:0 25px 90px #000b}
+.about-tradr-dialog::backdrop{background:rgba(1,6,12,.78)}
+.about-dialog-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.about-dialog-heading img{border-radius:12px}
+.about-dialog-heading button{background:#203447;color:#fff;border:0;border-radius:50%;width:32px;height:32px;font-size:22px;cursor:pointer}
+.about-tradr-dialog h2{font-size:23px;line-height:1.25;margin:0 0 10px}
+.about-tradr-dialog>p{font-size:13px;color:#a9bfd1;line-height:1.55}
+.about-features{display:grid;gap:14px;margin:22px 0}
+.about-features div{display:grid;gap:4px;padding-bottom:12px;border-bottom:1px solid #294058}
+.about-features strong{font-size:13px}
+.about-features span{font-size:12px;color:#9bb0c3;line-height:1.5}
+.portfolio-manual{margin:14px 0 12px}
+.portfolio-manual>button{cursor:pointer}
+.portfolio-manual-form{margin:15px 0;padding:18px;background:#101e2c;border:1px solid #284358;border-radius:16px}
+.manual-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.manual-input-grid label{display:flex;flex-direction:column;gap:6px;color:#9fb4c7;font-size:12px;font-weight:550}
+.manual-input-grid input,.manual-input-grid select{width:100%;min-width:0;padding:12px 10px;border:1px solid #2a4860;border-radius:9px;background:#091622;color:#edf8ff;font:inherit;font-size:13px}
+.manual-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.manual-actions button{cursor:pointer}
+.gem-search-panel{background:#101f2c;border:1px solid #2a4259;border-radius:15px;padding:17px;margin:20px 0 17px}
+.gem-search-panel>label{font-size:13px;font-weight:700;display:block;margin-bottom:9px}
+.gem-search-row{display:flex;gap:9px}
+.gem-search-row input{min-width:0;flex:1;border:1px solid #2c485f;border-radius:10px;background:#081622;padding:12px;color:#f1f8ff}
+.gem-search-row button{cursor:pointer}
+.gem-search-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:11px;max-height:290px;overflow:auto}
+.gem-search-match{display:grid;gap:4px;text-align:left;border:1px solid #2a4356;border-radius:9px;background:#15293b;color:#f0f8ff;padding:11px;cursor:pointer;min-width:0}
+.gem-search-match b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gem-search-match small{color:#9eb1c1;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gem-nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:9px;border-bottom:1px solid #263b50}
+.gem-nav button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;color:#8aa5b9;white-space:nowrap;font-size:13px;cursor:pointer}
+.gem-nav button.selected{color:#eaf6ff;border-bottom-color:#39aeed;font-weight:700}
+.gem-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 8px}
+.gem-summary h3{font-size:17px;margin:0}
+.gem-summary button{font-size:12px;cursor:pointer}
+.gem-candidates{display:grid;gap:0}
+.gem-candidate,.gem-saved{display:flex;width:100%;align-items:center;gap:14px;border:0;border-bottom:1px solid #24374b;background:none;color:#e6f5ff;padding:13px 2px;text-align:left;cursor:pointer}
+.gem-candidate:hover,.gem-saved:hover{background:#122739}
+.gem-candidate img{width:42px;height:58px;object-fit:contain;flex:none}
+.gem-img-placeholder{display:block;width:42px;height:58px;border-radius:6px;background:#192d40;flex:none}
+.gem-candidate-main{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px}
+.gem-candidate-main b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gem-candidate-main small{font-size:11px;color:#8da6bc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gem-candidate-stats{display:flex;flex-direction:column;gap:5px;text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.gem-candidate-stats b{font-size:14px}
+.gem-candidate-stats em{font-style:normal;font-size:11px}
+.gem-candidate-stats .drop{color:#f27d8c}.gem-candidate-stats .rise{color:#50cf9b}
+.gem-note{background:#111e2d;border:1px solid #30465b;border-radius:13px;padding:20px;color:#a8bdd0;font-size:13px;line-height:1.6}
+.gem-note strong{color:#e3f3ff}
+.gem-note p{margin:8px 0 0}
+.gem-help{margin-top:18px;line-height:1.55}
+.gem-saved{justify-content:space-between}.gem-saved div{display:flex;flex-direction:column;gap:5px}.gem-saved small{font-size:11px;color:#a7b9c9}
+.settings-clean{display:grid;gap:12px;margin-top:20px}
+.clean-setting{background:#101d2a;border:1px solid #263b51;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.clean-setting>div:first-child{display:flex;flex-direction:column;gap:6px}
+.clean-setting strong{font-size:14px}
+.clean-setting span{font-size:12px;color:#92aabc;line-height:1.4}
+.clean-setting button,.clean-setting select,.setting-file-button{cursor:pointer}
+.clean-setting select{background:#17283a;border:1px solid #34516a;border-radius:9px;color:#eef6ff;padding:10px}
+.setting-inline{display:flex;align-items:center;gap:8px}
+.setting-file-button{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:9px;cursor:pointer;text-decoration:none}
+.advanced-settings{margin-top:8px;border:1px solid #263b51;border-radius:12px;padding:14px 16px;background:#0c1723}
+.advanced-settings summary{cursor:pointer;color:#9bb0c4;font-size:13px}
+.advanced-settings-body{margin-top:14px;display:grid;gap:11px}
+@media(max-width:650px){
+ .aboutTradrButton{padding:9px 11px}
+ .manual-input-grid,.gem-search-results{grid-template-columns:1fr}
+ .gem-search-row button{padding:10px}
+ .clean-setting{align-items:flex-start;flex-wrap:wrap}
+ .gem-candidate{gap:9px}
+ .gem-candidate img,.gem-img-placeholder{width:35px;height:49px}
+ .gem-candidate-stats b{font-size:12px}
+}
