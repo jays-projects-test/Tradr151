@@ -343,3 +343,32 @@
  .benchmarkBarRow{grid-template-columns:77px minmax(0,1fr) 56px;gap:7px;font-size:10px}
  .benchmarkBarRow b{font-size:10px}
 }
+
+/* Compact historical benchmark below main market panel */
+.benchmarkCompare{padding:16px 18px;margin:18px 0 24px}
+.benchmarkTop{display:block}
+.benchmarkTop h3{font-size:18px;line-height:1.25;letter-spacing:-.35px;margin:5px 0 0}
+.benchmarkRange{margin:6px 0 15px;font-size:11px;line-height:1.4}
+.benchmarkTiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.benchmarkTile{gap:12px;padding:13px 12px;min-width:0}
+.benchmarkName{align-items:center;min-width:0}
+.benchmarkName span:last-child{flex:1;min-width:0}
+.benchmarkName b{white-space:normal;overflow-wrap:normal;overflow:visible;line-height:1.25;font-size:12px}
+.benchmarkName small{font-size:10px;white-space:normal;line-height:1.3}
+.benchmarkTile>strong{font-size:21px;letter-spacing:-.6px}
+.benchmarkMiniTrack{width:100%;height:4px;border-radius:8px;background:#293c4f;overflow:hidden}
+.benchmarkMiniTrack span{display:block;height:100%;background:#40b3ff;border-radius:8px}
+.benchmark-bitcoin .benchmarkMiniTrack span{background:#e7a24b}
+.benchmark-sp500 .benchmarkMiniTrack span{background:#93a7c5}
+@media(max-width:650px){
+ .benchmarkCompare{margin:16px 0 22px;padding:15px 12px}
+ .benchmarkTop h3{font-size:17px}
+ .benchmarkRange{margin-bottom:13px;font-size:10px}
+ .benchmarkTiles{gap:7px}
+ .benchmarkTile{padding:11px 8px;gap:11px}
+ .benchmarkName{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+ .benchmarkName span:last-child{width:100%}
+ .benchmarkName b{font-size:11px;line-height:1.3}
+ .benchmarkName small{font-size:9px}
+ .benchmarkTile>strong{font-size:20px}
+}
