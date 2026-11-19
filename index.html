@@ -25,19 +25,7 @@
   <div class="market-title"><span>POKÉMON MARKET INDEX</span><h2>Market overview</h2></div>
   <div class="currency-toggle" role="group" aria-label="Display currency"><button type="button" data-currency="USD" class="selected">USD</button><button type="button" data-currency="GBP">GBP</button></div>
 </div>
-<section class="benchmarkCompare" aria-label="Pokémon performance compared with major markets">
-  <div class="benchmarkTop">
-    <div><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
-    <div class="benchmarkPeriods" role="group" aria-label="Historical comparison period">
-      <button type="button" class="selected" data-benchmark-period="long">Since 2021</button>
-      <button type="button" data-benchmark-period="ytd">2026 YTD</button>
-    </div>
-  </div>
-  <p class="benchmarkRange" id="benchmarkRange">Published benchmark · Sep 2021 – Nov 2026</p>
-  <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
-  <div id="benchmarkBars" class="benchmarkBars" aria-label="Historical cumulative returns by asset"></div>
-  <div class="benchmarkFoot"><span id="benchmarkNote">Historical index snapshot, not a live market feed.</span><a id="benchmarkSource" href="https://cardtrack.com/data/pokemon-vs-assets" target="_blank" rel="noopener noreferrer" aria-label="Open market comparison study">Study ↗</a></div>
-</section>
+
 <div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
  <div class="tradr-gauge">
   <div class="gauge-heading"><span>POKÉMON MARKET PERFORMANCE</span></div>
@@ -78,7 +66,12 @@
           <div><h4><span class="fall">↘</span> Biggest losers</h4><div id="universeLosers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
         </div>
         
-      </div><div class="legacyMarketData" hidden>
+      </div>
+<section class="benchmarkCompare" aria-label="Pokémon investment performance compared with financial markets">
+ <div class="benchmarkTop"><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
+ <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
+ <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
+</section><div class="legacyMarketData" hidden>
 <div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
       <div class="market-stats"><div class="market-tile"><small>Observed sales value · 30D</small><strong id="marketVolume">—</strong><span id="marketVolumeMeta">Verifiable sample only</span></div><div class="market-tile"><small>Market breadth · 30D</small><strong id="marketBreadth">—</strong><span id="marketBreadthMeta">Requires historical comps</span></div><div class="market-tile"><small>Tracked assets</small><strong id="marketAssets">0</strong><span id="marketAssetsMeta">In coverage universe</span></div><div class="market-tile sentiment-tile"><small>Fear & Greed <button class="tiny-info" data-info="fear" aria-label="About the sentiment index">ⓘ</button></small><strong id="marketSentiment">—</strong><span id="marketMood">Not enough market data</span><div class="sentiment-bar"></div></div></div>
       <div class="market-tabs" role="tablist" aria-label="Market tables"><button class="market-tab selected" data-market-view="movers">Top movers</button><button class="market-tab" data-market-view="gainers">Gainers</button><button class="market-tab" data-market-view="losers">Losers</button><button class="market-tab" data-market-view="signals">Signals</button></div>
