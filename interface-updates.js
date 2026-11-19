@@ -25,7 +25,7 @@ function saveManual(e){
   w.portfolio[key]={...(existing||{}),quantity:newQty,cost:avgCost,grade};
   bridge.save();
   $('portfolioManualForm').hidden=true;
-  $('portfolioManualToggle').textContent='+ Add card manually';
+  $('portfolioManualToggle').textContent='Add card';
   form.reset();
   bridge.changeTab('portfolio');
   status(existing?'Updated '+name+' in your portfolio.':'Added '+name+' to your portfolio.');
@@ -36,12 +36,12 @@ function init(){
  $('portfolioManualToggle')?.addEventListener('click',()=>{
   const form=$('portfolioManualForm');
   form.hidden=!form.hidden;
-  $('portfolioManualToggle').textContent=form.hidden?'+ Add card manually':'Hide form';
+  $('portfolioManualToggle').textContent=form.hidden?'Add card':'Close';
   if(!form.hidden)form.querySelector('[name="name"]')?.focus();
  });
  $('portfolioManualCancel')?.addEventListener('click',()=>{
   $('portfolioManualForm').hidden=true;
-  $('portfolioManualToggle').textContent='+ Add card manually';
+  $('portfolioManualToggle').textContent='Add card';
  });
  $('aboutTradrButton')?.addEventListener('click',()=>$('aboutTradrDialog').showModal());
  $('closeAboutTradr')?.addEventListener('click',()=>$('aboutTradrDialog').close());
