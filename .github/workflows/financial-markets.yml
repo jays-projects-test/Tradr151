@@ -1,0 +1,37 @@
+name: Refresh financial market prices
+on:
+  push:
+    paths:
+      - 'scripts/update-financial-markets.py'
+      - '.github/workflows/financial-markets.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '12 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: tradr-financial-markets
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect observed prices and calculate returns
+        env:
+          COINGECKO_DEMO_API_KEY: ${{ secrets.COINGECKO_DEMO_API_KEY }}
+        run: python scripts/update-financial-markets.py
+      - name: Store refreshed market feed
+        run: |
+          git config user.name "tradr151-market-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/financial-markets.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh Bitcoin and S&P 500 market prices"
+            git push
+          fi
