@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d14">\n<meta name="description" content="Tradr151 is a Pokémon card market insights and portfolio research platform. Explore market trends, card pricing and your collection.">\n<meta property="og:type" content="website"><meta property="og:title" content="Tradr151 — Pokémon Market Insights"><meta property="og:description" content="Track the Pokémon card market, research cards and manage your portfolio."><meta property="og:image" content="https://jays-projects-test.github.io/Tradr151/assets/tradr151-logo.png">\n<link rel="icon" type="image/png" sizes="96x96" href="assets/tradr151-logo.png"><link rel="apple-touch-icon" href="assets/tradr151-logo.png"><link rel="manifest" href="site.webmanifest">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d14">\n<meta name="description" content="Tradr151 is a Pokémon card market insights and portfolio research platform. Explore market trends, card pricing and your collection.">
+<meta property="og:type" content="website"><meta property="og:title" content="Tradr151 — Pokémon Market Insights"><meta property="og:description" content="Track the Pokémon card market, research cards and manage your portfolio."><meta property="og:image" content="https://jays-projects-test.github.io/Tradr151/assets/tradr151-logo.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/tradr151-logo.png"><link rel="apple-touch-icon" href="assets/tradr151-logo.png"><link rel="manifest" href="site.webmanifest">
 <title>Tradr151 — The card market</title><link rel="stylesheet" href="styles.css">
 </head><body>
 <div class="shell">
@@ -15,14 +17,14 @@
     <div class="sidebarBottom"><button class="nav nav-settings" data-tab="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 13.5l2-1.5-2-1.5-.8-2 1-2.3-2.5-2.4-2.2 1-2-.8L12 2l-1.5 2-2 .8-2.3-1-2.4 2.5 1 2.2-.8 2L2 12l2 1.5.8 2-1 2.3 2.5 2.4 2.2-1 2 .8L12 22l1.5-2 2-.8 2.3 1 2.4-2.5-1-2.2z"/></svg><span>Preferences</span></button></div>
   </aside>
   <main class="main">
-    <header class="top"><div class="mobileBrand"><img class="siteLogo mini" src="assets/tradr151-logo.png" alt="" width="36" height="36">tradr<span class="accent">151</span></div><div class="pageTop"><div class="eyebrow" id="topEyebrow">YOUR CARD MARKET</div><h1 id="pageTitle">Market</h1></div><div class="headerActions"><span id="connectionLabel" class="connectionLabel">Guest • local storage</span><button class="iconButton" id="infoButton" aria-label="Market data information" data-info="guide" title="Information">i</button><button class="avatarButton" id="authButton" aria-label="Sign in">Sign in</button></div></header>
+    <header class="top"><div class="mobileBrand"><img class="siteLogo mini" src="assets/tradr151-logo.png" alt="" width="36" height="36">tradr<span class="accent">151</span></div><div class="pageTop"><div class="eyebrow" id="topEyebrow">YOUR CARD MARKET</div><h1 id="pageTitle">Market</h1></div><div class="headerActions"><span id="connectionLabel" class="connectionLabel">Guest • local storage</span><button class="avatarButton" id="authButton" aria-label="Sign in">Sign in</button></div></header>
     <section class="tab" id="discover">
       <div class="market-hero"><div class="tradr-market-toolbar">
   <div class="market-title"><span>POKÉMON MARKET INDEX</span><h2>Market overview</h2></div>
   <div class="currency-toggle" role="group" aria-label="Display currency"><button type="button" data-currency="USD" class="selected">USD</button><button type="button" data-currency="GBP">GBP</button></div>
 </div><div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
  <div class="tradr-gauge">
-  <div class="gauge-heading"><span>FEAR &amp; GREED</span><button class="tiny-info" data-info="fear" aria-label="About Fear and Greed calculation">ⓘ</button></div>
+  <div class="gauge-heading"><span>FEAR &amp; GREED</span></div>
   <svg viewBox="0 0 240 137" role="img" aria-label="Pokémon market sentiment gauge">
    <path d="M 25 114 A 95 95 0 0 1 215 114" stroke="#293748" stroke-width="20" fill="none" stroke-linecap="round"/>
    <path d="M 25 114 A 95 95 0 0 1 43.1 57.2" stroke="#e95b68" stroke-width="19" fill="none"/>
@@ -35,31 +37,31 @@
    <text x="25" y="136" font-size="11" fill="#8195ab" text-anchor="middle">0</text>
    <text x="215" y="136" font-size="11" fill="#8195ab" text-anchor="middle">100</text>
   </svg>
-  <div class="gauge-label" id="gaugeLabel">Collecting market history</div><div class="gauge-help">Guide-price sentiment proxy · not a global sales index</div>
+  <div class="gauge-label" id="gaugeLabel">Collecting market history</div>
  </div>
  <div class="market-fast-stats">
-  <div><small>Tracked products</small><strong id="gaugeTracked">—</strong><span>Market-wide coverage</span></div>
-  <div><small>7D market change</small><strong id="gauge7d">—</strong><span>Comparable price guides</span></div>
+  <div><small>Tracked products</small><strong id="gaugeTracked">—</strong><span>Cards monitored</span></div>
+  <div><small>7D market change</small><strong id="gauge7d">—</strong><span>Market movement</span></div>
   <div><small>30D market change</small><strong id="gauge30d">—</strong><span>Comparable price guides</span></div>
   <div><small>Price feed</small><strong class="feed-status" id="gaugeFresh">Daily</strong><span id="gaugeFreshSub">Checks for updates hourly</span></div>
  </div>
 </div>
         <div class="market-data-banner">
           <span class="market-data-led"></span>
-          <span><strong>US market guide data</strong> · Latest snapshot <span id="universeFreshness">checking…</span></span>
-          <button type="button" class="tiny-info" data-info="market" aria-label="Market data methodology">ⓘ</button>
+          <span><strong>Market updated</strong> <span id="universeFreshness">checking…</span></span>
+          
         </div>
         <div class="market-product-search">
   <div class="market-product-search-bar"><input type="search" id="marketProductSearch" placeholder="Search market cards by name, set or number..." aria-label="Search market-wide products"><button type="button" id="marketProductSearchButton">Search market</button></div>
   <div id="marketProductSearchResults" class="market-product-search-results" aria-live="polite"></div>
-</div>        <div class="universeLeaders"><h4>Top card values <span class="muted small">US raw-card market guides</span></h4><div id="universeLeaders" class="universeList"><p class="muted small">Loading market leaders...</p></div></div>
+</div>        <div class="universeLeaders"><h4>Top card values</h4><div id="universeLeaders" class="universeList"><p class="muted small">Loading market leaders...</p></div></div>
 
         <div class="universeTabs"><button type="button" data-wide-period="week" class="selected">7D movers</button><button type="button" data-wide-period="month">30D movers</button></div>
         <div class="universeColumns">
           <div><h4><span class="rise">↗</span> Biggest gainers</h4><div id="universeGainers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
           <div><h4><span class="fall">↘</span> Biggest losers</h4><div id="universeLosers" class="universeList"><p class="muted small">Collecting price history</p></div></div>
         </div>
-        <p class="universeNote">TCGplayer market-guide price trends across an expanding card universe. Not recorded sales or a total-market-cap estimate.</p>
+        
       </div><div class="legacyMarketData" hidden>
 <div class="market-status"><span class="pulse-dot"></span><span id="feedState">Loading market coverage…</span><span id="feedTimestamp"></span></div>
       <div class="market-stats"><div class="market-tile"><small>Observed sales value · 30D</small><strong id="marketVolume">—</strong><span id="marketVolumeMeta">Verifiable sample only</span></div><div class="market-tile"><small>Market breadth · 30D</small><strong id="marketBreadth">—</strong><span id="marketBreadthMeta">Requires historical comps</span></div><div class="market-tile"><small>Tracked assets</small><strong id="marketAssets">0</strong><span id="marketAssetsMeta">In coverage universe</span></div><div class="market-tile sentiment-tile"><small>Fear & Greed <button class="tiny-info" data-info="fear" aria-label="About the sentiment index">ⓘ</button></small><strong id="marketSentiment">—</strong><span id="marketMood">Not enough market data</span><div class="sentiment-bar"></div></div></div>
@@ -91,7 +93,7 @@
       <details class="advancedPanel"><summary>Manage comparable sales <span>＋</span></summary><div class="advancedBody"><p class="muted small">One completed sale per line: YYYY-MM-DD,price,grade. Grades: raw, psa9, psa10. GBP only. Do not add asking prices.</p><textarea id="salesInput" rows="5" placeholder="2026-11-02,45,raw"></textarea><div class="buttonRow"><button class="primary" id="saveSales">Save sales</button><button class="secondary" id="clearSales">Clear</button></div><p id="salesFeedback" class="muted small"></p></div></details>
     </section>
     <section class="tab" id="watchlist" hidden><div class="sectionHead bigSection"><div><h2>Watchlist</h2><p class="muted">Cards on your radar.</p></div><button class="help" data-info="watchlist" aria-label="About watchlist">i</button></div><div class="listPanel" id="watchlistItems"></div></section>
-    <section class="tab" id="portfolio" hidden><div class="sectionHead bigSection"><div><h2>Portfolio</h2><p class="muted">Track what you own.</p></div><button class="help" data-info="portfolio" aria-label="About portfolio">i</button></div><div class="listPanel" id="portfolioItems"></div></section>
+    <section class="tab" id="portfolio" hidden><div class="sectionHead bigSection"><div><h2>Portfolio</h2><p class="muted">Track your cards, purchase prices and performance.</p></div></div><div class="portfolio-import-tools"><label class="primary portfolio-import-action" for="portfolioCsv">Import CSV</label><input type="file" id="portfolioCsv" accept=".csv,text/csv" hidden><button class="secondary" type="button" id="portfolioCsvTemplate">CSV template</button></div><p id="portfolioImportStatus" class="muted small" role="status" aria-live="polite"></p><div class="listPanel" id="portfolioItems"></div></section>
     <section class="tab" id="research" hidden><div class="sectionHead bigSection"><div><h2>Gem scanner</h2><p class="muted">Your research, ranked by opportunity.</p></div><button class="help" data-info="gems" aria-label="About the gem scanner">i</button></div><button class="primary scannerButton" id="scanButton">Scan saved cards</button><div class="listPanel" id="scannerResults"></div></section>
     <section class="tab" id="settings" hidden><div class="sectionHead bigSection"><div><h2>Preferences</h2><p class="muted">Your account and data.</p></div></div><div class="settingsGroup"><div class="settingsHeading">ACCOUNT</div><div class="settingsRow"><div><b>Cloud sync</b><small>Private sign-in with Supabase</small></div><button class="quietLink" id="toggleCloud">Configure →</button></div><div class="cloudSetup" id="cloudSetup" hidden><p class="muted small">Create a Supabase project, run the bundled <code>supabase.sql</code>, then enter your project URL and public publishable/anon key. Never enter private service-role or paid API keys.</p><label>Project URL<input id="supaUrl" placeholder="https://yourproject.supabase.co" autocomplete="off"></label><label>Publishable / anon key<input id="supaKey" placeholder="sb_publishable_..." autocomplete="off"></label><button class="primary" id="saveSettings">Save connection</button><p class="muted small">Allow your GitHub Pages URL in Supabase Authentication URL Configuration for email magic links.</p></div><div class="settingsHeading">DATA FEEDS</div><div class="settingsRow"><div><b>Import completed sales</b><small>CSV with exact card ID, date, grade, GBP and source</small></div><label class="quietLink" for="salesCsv">Import CSV →</label><input id="salesCsv" type="file" accept=".csv,text/csv" hidden></div><div class="settingsRow"><div><b>External market feed</b><small>Read-only JSON; refreshed when connected</small></div><span id="feedSettingsStatus" class="muted small">Not connected</span></div><p id="importStatus" class="muted small" role="status"></p><div class="settingsHeading">BACKUPS</div><div class="settingsRow"><div><b>Export backup</b><small>Download saved cards and sales as JSON</small></div><button class="quietLink" id="exportButton">Export →</button></div><div class="settingsRow"><div><b>Import backup</b><small>Restore your existing workspace</small></div><label class="quietLink" for="importFile">Import →</label><input type="file" id="importFile" accept="application/json" hidden></div><div class="settingsHeading">ABOUT</div><div class="settingsRow"><div><b>Data &amp; methodology</b><small>What each market value means</small></div><button class="quietLink" data-info="guide">Read →</button></div></div><p class="legal">Tradr151 is an independent collector research tool. Not affiliated with Trading 212, Pokémon, Nintendo, PSA or market data providers. Research signals are not guarantees of future value.</p></section>
   </main>
@@ -100,7 +102,7 @@
 <dialog id="infoDialog"><div class="modalHead"><h3 id="infoTitle">Information</h3><button class="modalClose" id="closeInfo" aria-label="Close">×</button></div><p id="infoText"></p></dialog>
 <dialog id="authDialog"><form id="authForm" method="dialog"><div class="modalHead"><h3>Sign in</h3><button class="modalClose" value="cancel" aria-label="Close">×</button></div><p class="muted small">Use an email magic link when cloud sync is configured. Otherwise your data stays on this device.</p><label>Email<input id="authEmail" placeholder="you@example.com" type="email" required></label><button id="sendLink" class="primary full" value="submit">Send sign-in link</button><p class="muted small" id="authStatus"></p></form></dialog>
 <script type="module" src="app.js"></script><script type="module" src="market.js"></script><script src="ui.js" defer></script>
-<script src="market-wide.js" defer></script>
+<script src="market-wide.js" defer></script><script src="portfolio-import.js" defer></script>
 <dialog id="marketCardDialog" class="market-card-dialog" aria-label="Market card details">
  <div class="modal-header"><span class="market-kicker">CARD MARKET INTELLIGENCE</span><button id="closeMarketCard" class="modalClose" type="button" aria-label="Close card details">×</button></div>
  <div class="market-card-body" id="marketCardBody"><p class="muted">Loading card details...</p></div>
