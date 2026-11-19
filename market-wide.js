@@ -178,9 +178,11 @@ function drawDetail(){
  const image=product.img?.startsWith('https://')?'<img src="'+esc(product.img)+'" alt="'+esc(product.name)+'" class="cardHeroImage">':'';
  const variantSelect='<select id="marketCardVariant" aria-label="Printing or finish">'+variants.map(v=>'<option value="'+esc(v.name)+'"'+(v.name===activeVariant?' selected':'')+'>'+esc(v.name)+'</option>').join('')+'</select>';
  const priceCompare=Number.isFinite(listingMid)&&listingMid>0?((listingMid-price)/listingMid*100):null;
- const signal=verified.saleCount>=8&&verified.listingCount>=3&&w7!==null&&w30!==null
-   ? (w7>5 && w30>0?'HOLD / REVIEW':w7< -10?'SELL / REVIEW':'HOLD / REVIEW')
-   :'INSUFFICIENT SALES DATA';
+ const verifiedEvidence=verified.saleCount>=8&&verified.listingCount>=3&&w7!==null&&w30!==null;
+ const historicalEvidence=points.length>=3&&w7!==null&&w30!==null;
+ const signal=verifiedEvidence?(w7<=-12&&w30<0?'BUY / REVIEW':w7>=18&&w30>5?'SELL / REVIEW':'HOLD / REVIEW')
+   :historicalEvidence?(w7<=-12?'WATCH — PRICE DROP':w7>=18?'WATCH — PRICE SURGE':'HOLD / MONITOR'):'INSUFFICIENT DATA';
+ const signalExplanation=verifiedEvidence?'Preliminary rating using verified transaction coverage and price momentum. Confirm condition, fees and liquidity.':historicalEvidence?'Price-trend screening only. No confirmed sales support for a buy or sell signal.':'Insufficient historical and verified sales data for a reliable buy, hold or sell opinion.';
  host.innerHTML='<div class="cardHero">'+image+'<div><span class="market-kicker">'+esc(product.set)+'</span><h2>'+esc(product.name)+'</h2><p class="muted">'+esc(product.number||'Card number unverified')+' · '+esc(product.rarity||'Rarity unspecified')+'</p><div class="cardPicker">'+variantSelect+'</div><strong class="cardHeroPrice">'+money(price)+'</strong><small>US TCGplayer market guide · '+esc(snapshot[0])+'</small></div></div>'+
  '<div class="card-metric-grid">'+
  metrics('Market price guide',money(price),'US • sold-informed model, not a last sale')+
@@ -191,7 +193,7 @@ function drawDetail(){
  metrics('PSA 9/10 sold average',verified.psaAvg,'Requires comparable graded sales')+
  metrics('Last verified sold',verified.last,'Actual recorded transaction required')+
  metrics('7D / 30D change',(w7===null?'—':pct(w7))+' / '+(w30===null?'—':pct(w30)),'Observed daily guide history')+
- '</div><div class="signal-card"><div><span class="market-kicker">TRADR RESEARCH SIGNAL</span><h3>'+signal+'</h3><p>'+(signal==='INSUFFICIENT SALES DATA'?'Not enough independently verified sold and active-listing comparisons to issue a buy or sell recommendation.':'Research-only indication. Compare condition, fees, liquidity and population before trading.')+'</p></div><span class="signalChip">Data-first</span></div>'+
+ '</div><div class="signal-card"><div><span class="market-kicker">TRADR RESEARCH SIGNAL</span><h3>'+signal+'</h3><p>'+signalExplanation+'</p></div><span class="signalChip">'+(verifiedEvidence?'Preliminary':historicalEvidence?'Guide only':'Not rated')+'</span></div>'+
  '<div class="card-chart-title"><b>Market price history</b><small>US TCGplayer guide · daily source</small></div>'+chart(points)+
  '<div class="card-bottom-controls"><button type="button" class="primary" id="marketAddPortfolio">Add to portfolio</button><button type="button" class="secondary" id="marketAddWatchlist">Add to watchlist</button></div>'+
  '<p class="detailFootnote">USD prices come from the US market. GBP is a currency conversion, not a UK marketplace valuation. Listing and PSA fields show no data until a matching verified provider feed is connected.</p>';
