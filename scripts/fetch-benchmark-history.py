@@ -85,7 +85,8 @@ def numeric(raw):
 
 
 def parse_csv(content):
-    reader = csv.DictReader(io.StringIO(content))
+    clean = "\n".join(line for line in content.splitlines() if line.strip() and not line.lstrip().startswith("#"))
+    reader = csv.DictReader(io.StringIO(clean))
     if not reader.fieldnames:
         raise ValueError("Historical CSV missing headers")
     names = reader.fieldnames
