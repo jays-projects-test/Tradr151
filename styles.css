@@ -294,3 +294,52 @@
 /* Wordmark only in app header: white Tradr, blue 151. Logo image remains as favicon/search preview. */
 .brand-name,.mobileBrand{color:#f2f7ff}
 .brand-name .brand-number,.mobileBrand .accent{color:var(--blue)}
+
+/* Historical comparative benchmark: compact market terminal style */
+.benchmarkCompare{margin:14px 0 19px;background:#101b29;border:1px solid #2b4158;border-radius:17px;padding:18px 20px 16px}
+.benchmarkTop{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.benchmarkEyebrow{color:#7bbce8;letter-spacing:1.5px;font-size:10px;font-weight:750}
+.benchmarkTop h3{font-size:19px;letter-spacing:-.45px;margin:6px 0 0;color:#f4f8ff}
+.benchmarkPeriods{display:flex;padding:3px;gap:2px;border:1px solid #2b4054;border-radius:11px;background:#0b1623;flex:none}
+.benchmarkPeriods button{border:0;border-radius:8px;background:none;color:#9ab0c7;cursor:pointer;font-size:11px;font-weight:650;padding:9px 10px}
+.benchmarkPeriods button.selected{background:#248ed4;color:white}
+.benchmarkRange{margin:10px 0 15px;color:#8da5b8;font-size:11px}
+.benchmarkTiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.benchmarkTile{min-width:0;border-radius:12px;border:1px solid #293c50;background:#142435;padding:12px;display:flex;flex-direction:column;gap:13px}
+.benchmarkName{display:flex;align-items:center;gap:8px;min-width:0}
+.benchmarkName span:last-child{display:flex;flex-direction:column;min-width:0;gap:3px}
+.benchmarkName b{font-size:11px;font-weight:750;color:#e5f1fc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.benchmarkName small{font-size:9px;color:#7f9ab0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.benchmarkSymbol{display:inline-flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;border-radius:8px;font-weight:800;font-size:15px;background:#123453;color:#56baff}
+.benchmark-bitcoin .benchmarkSymbol{color:#f6a33b;background:#44331f}
+.benchmark-sp500 .benchmarkSymbol{color:#dfe9ff;background:#293b59}
+.benchmarkTile>strong{font-size:22px;letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.benchmarkPositive{color:#43cfa1}
+.benchmarkNegative{color:#f16e83}
+.benchmarkBars{margin:16px 0 12px;display:grid;gap:10px}
+.benchmarkBarRow{display:grid;grid-template-columns:94px minmax(0,1fr) 64px;align-items:center;gap:10px;font-size:11px;color:#afc3d3}
+.benchmarkBarRow b{font-size:11px;text-align:right;font-variant-numeric:tabular-nums}
+.benchmarkBarTrack{height:8px;border-radius:10px;overflow:hidden;background:#243447}
+.benchmarkBarFill{height:100%;background:#42aefa;border-radius:9px}
+.benchmarkBarFill.benchmark-sp500{background:#96a8c5}
+.benchmarkBarFill.benchmark-bitcoin{background:#e7a24b}
+.benchmarkBarFill.is-negative{background:#f16e83}
+.benchmarkFoot{display:flex;gap:15px;align-items:flex-start;justify-content:space-between;border-top:1px solid #283a50;padding-top:12px;color:#829ab1;font-size:10px;line-height:1.55}
+.benchmarkFoot span{max-width:530px}
+.benchmarkFoot a{white-space:nowrap;color:#75c8fa;text-decoration:none;font-weight:700}
+.benchmarkFoot a:hover{text-decoration:underline}
+@media(max-width:650px){
+ .benchmarkCompare{padding:14px 12px;margin:12px 0 16px}
+ .benchmarkTop{gap:9px;align-items:flex-start}
+ .benchmarkTop h3{font-size:17px}
+ .benchmarkPeriods button{font-size:10px;padding:8px 6px}
+ .benchmarkTiles{gap:6px}
+ .benchmarkTile{padding:10px 7px;gap:10px}
+ .benchmarkName{gap:5px}
+ .benchmarkSymbol{width:21px;height:21px;border-radius:6px;font-size:12px}
+ .benchmarkName b{font-size:10px}
+ .benchmarkName small{font-size:8px}
+ .benchmarkTile>strong{font-size:18px}
+ .benchmarkBarRow{grid-template-columns:77px minmax(0,1fr) 56px;gap:7px;font-size:10px}
+ .benchmarkBarRow b{font-size:10px}
+}
