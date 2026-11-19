@@ -561,3 +561,11 @@
 .marketExpander summary>span:first-child{transform:none!important;writing-mode:horizontal-tb}
 .marketExpander summary>.markets-summary-arrow{transform:rotate(0deg)}
 .marketExpander[open] summary>.markets-summary-arrow{transform:rotate(180deg)}
+
+/* Tiny period switch for observed 7D/30D market returns */
+.markets-module-title{justify-content:flex-start}
+.markets-module-title h4{flex:1;min-width:0}
+.market-period-switch{display:flex;align-items:center;gap:2px;border:1px solid #2b445c;background:#0d1b2c;border-radius:8px;padding:3px}
+.market-period-switch button{border:0;background:transparent;color:#97abc1;border-radius:6px;font-size:10px;font-weight:650;min-width:34px;min-height:26px;cursor:pointer}
+.market-period-switch button.selected{background:#218fd1;color:#f7fbff}
+@media(max-width:650px){.market-period-switch button{min-width:32px}}
