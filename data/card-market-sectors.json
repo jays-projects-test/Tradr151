@@ -46,11 +46,11 @@
       "id": "magic",
       "name": "Magic: The Gathering",
       "sector": "tcg",
-      "cap_usd": null,
-      "cap_label": "Not established",
-      "coverage": "Insufficient verified circulating card quantity and matching valuations for comparable total market cap",
+      "cap_usd": 289670000,
+      "cap_label": "Tracked graded set value",
+      "coverage": "Assetra's tracked PSA / BGS / CGC graded Magic card sets; partial market coverage, not all printed cards",
       "date": "2026-11-19",
-      "source": "https://assetra.co/methodology"
+      "source": "https://assetra.co/sets"
     },
     {
       "id": "yugioh",
