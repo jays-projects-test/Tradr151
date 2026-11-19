@@ -150,7 +150,7 @@ function convertedProviderAmount(value,from){
 function panelMetrics(metrics){
  const listings=(metrics?.listings||[]).filter(x=>x.grade==='raw'&&x.region==='US').map(x=>convertedProviderAmount(x.price,x.currency)).filter(Number.isFinite);
  const sales=(metrics?.sales||[]).filter(x=>x.grade==='raw'&&x.region==='US').map(x=>convertedProviderAmount(x.sold_price,x.currency)).filter(Number.isFinite);
- const psa=(metrics?.sales||[]).filter(x=>['psa9','psa10'].includes(x.grade)&&x.region==='US').map(x=>convertedProviderAmount(x.sold_price,x.currency)).filter(Number.isFinite);
+ const psa=(metrics?.sales||[]).filter(x=>String(x.grade||'').toLowerCase().replace(/[\s_-]/g,'')==='psa10'&&x.region==='US').map(x=>convertedProviderAmount(x.sold_price,x.currency)).filter(Number.isFinite);
  const latest=(metrics?.sales||[]).filter(x=>x.grade==='raw'&&x.region==='US').sort((a,b)=>b.sold_at.localeCompare(a.sold_at))[0];
  const fmtAmt=n=>n===null?'—':new Intl.NumberFormat('en-GB',{style:'currency',currency,maximumFractionDigits:2}).format(n);
  return {listingAvg:listings.length?fmtAmt(listings.reduce((a,b)=>a+b,0)/listings.length):'—',
@@ -183,20 +183,20 @@ function drawDetail(){
  const signal=verifiedEvidence?(w7<=-12&&w30<0?'BUY / REVIEW':w7>=18&&w30>5?'SELL / REVIEW':'HOLD / REVIEW')
    :historicalEvidence?(w7<=-12?'WATCH — PRICE DROP':w7>=18?'WATCH — PRICE SURGE':'HOLD / MONITOR'):'INSUFFICIENT DATA';
  const signalExplanation=verifiedEvidence?'Preliminary rating using verified transaction coverage and price momentum. Confirm condition, fees and liquidity.':historicalEvidence?'Price-trend screening only. No confirmed sales support for a buy or sell signal.':'Insufficient historical and verified sales data for a reliable buy, hold or sell opinion.';
- host.innerHTML='<div class="cardHero">'+image+'<div><span class="market-kicker">'+esc(product.set)+'</span><h2>'+esc(product.name)+'</h2><p class="muted">'+esc(product.number||'Card number unverified')+' · '+esc(product.rarity||'Rarity unspecified')+'</p><div class="cardPicker">'+variantSelect+'</div><strong class="cardHeroPrice">'+money(price)+'</strong><small>US TCGplayer market guide · '+esc(snapshot[0])+'</small></div></div>'+
+ host.innerHTML='<div class="cardHero">'+image+'<div><span class="market-kicker">'+esc(product.set)+'</span><h2>'+esc(product.name)+'</h2><p class="muted">'+esc(product.number||'Card number unverified')+' · '+esc(product.rarity||'Rarity unspecified')+'</p><div class="cardPicker">'+variantSelect+'</div><strong class="cardHeroPrice">'+money(price)+'</strong><small>US market guide · '+esc(snapshot[0])+'</small></div></div>'+
  '<div class="card-metric-grid">'+
- metrics('Market price guide',money(price),'US • sold-informed model, not a last sale')+
+ metrics('Market price guide',money(price),'US guide estimate · not a last sale')+
  metrics('Median listing guide',Number.isFinite(listingMid)&&listingMid>0?money(listingMid):'—','US listing median, not mean')+
  metrics('Lowest listed guide',Number.isFinite(listingLow)&&listingLow>0?money(listingLow):'—','US lowest asking guide, excluding shipping')+
  metrics('Average active listing',verified.listingAvg,'Verified live listings: '+verified.listingCount)+
  metrics('Average sold price',verified.soldAvg,'Verified raw sales: '+verified.saleCount)+
- metrics('PSA 9/10 sold average',verified.psaAvg,'Requires comparable graded sales')+
+ metrics('PSA 10 average sold',verified.psaAvg,'Verified PSA 10 transactions only')+
  metrics('Last verified sold',verified.last,'Actual recorded transaction required')+
  metrics('7D / 30D change',(w7===null?'—':pct(w7))+' / '+(w30===null?'—':pct(w30)),'Observed daily guide history')+
  '</div><div class="signal-card"><div><span class="market-kicker">TRADR RESEARCH SIGNAL</span><h3>'+signal+'</h3><p>'+signalExplanation+'</p></div><span class="signalChip">'+(verifiedEvidence?'Preliminary':historicalEvidence?'Guide only':'Not rated')+'</span></div>'+
- '<div class="card-chart-title"><b>Market price history</b><small>US TCGplayer guide · daily source</small></div>'+chart(points)+
+ '<div class="card-chart-title"><b>Market price history</b><small>Daily US market guide</small></div>'+chart(points)+
  '<div class="card-bottom-controls"><button type="button" class="primary" id="marketAddPortfolio">Add to portfolio</button><button type="button" class="secondary" id="marketAddWatchlist">Add to watchlist</button></div>'+
- '<p class="detailFootnote">USD prices come from the US market. GBP is a currency conversion, not a UK marketplace valuation. Listing and PSA fields show no data until a matching verified provider feed is connected.</p>';
+ '<p class="detailFootnote">GBP values convert US market figures. UK sale prices and PSA 10 averages appear only when verified matching records are available.</p>';
  const sel=el('marketCardVariant');sel?.addEventListener('change',()=>{
    activeVariant=sel.value;drawDetail();loadSpecificMetrics();
  });
