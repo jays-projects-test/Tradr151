@@ -1,5 +1,9 @@
 name: Update historical market comparison
 on:
+  push:
+    paths:
+      - '.github/workflows/benchmark-history.yml'
+      - 'scripts/fetch-benchmark-history.py'
   workflow_dispatch:
   schedule:
     - cron: '18 22 * * *'
