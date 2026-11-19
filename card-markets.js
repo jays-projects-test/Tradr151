@@ -8,7 +8,7 @@
   if(n===null||n===undefined||!Number.isFinite(+n))return '—';
   return '$'+(n>=1e12?(n/1e12).toFixed(2)+'T':n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':Math.round(n).toLocaleString('en-US'));
  };
- let data=null,marketFilter='all',salesFilter='all',marketDays=30;
+ let data=null,marketFilter='all',salesFilter='all';
  let financial=null;
  const marketName=id=>({pokemon:'Pokémon',bitcoin:'Bitcoin',sp500:'S&P 500',onepiece:'One Piece',magic:'Magic',yugioh:'Yu-Gi-Oh!',dragonball:'Dragon Ball',lorcana:'Disney Lorcana',weiss:'Weiss Schwarz',digimon:'Digimon',sports:'Sports cards'})[id]||id;
  const marketIcon=id=>({pokemon:'T',bitcoin:'₿',sp500:'S',onepiece:'OP',magic:'M',yugioh:'Y',dragonball:'DB',lorcana:'L',weiss:'W',digimon:'D',sports:'★'})[id]||'•';
@@ -19,8 +19,8 @@
    const kind=m.method==='annual'?'Annual market (not cap)':m.method==='graded'?'Graded market cap':m.id==='bitcoin'?'Circulating cap':'Company market cap';
    const live=financial?.assets?.[m.id];
    const liveFresh=live&&live.as_of&&Date.now()-Date.parse(live.as_of+'T23:59:59Z')<5*86400000;
-   const currentChange=live?.['change_'+marketDays+'d'];
-   const change=m.method==='annual'?null:liveFresh&&Number.isFinite(currentChange)?currentChange:m.id==='bitcoin'||m.id==='sp500'?null:marketDays===30?m.change_30d:null;
+   const currentChange=Number(live?.change_30d);
+   const change=m.method==='annual'?null:liveFresh&&Number.isFinite(currentChange)?currentChange:m.id==='bitcoin'||m.id==='sp500'?null:m.change_30d;
    const shownAmount=liveFresh&&m.id==='bitcoin'&&Number.isFinite(live.market_cap_usd)?live.market_cap_usd:amount;
    const amountText=m.id==='bitcoin'&&!liveFresh?'—':abbreviate(shownAmount);
    const capNote=(m.id==='bitcoin'&&(!liveFresh||!Number.isFinite(live?.market_cap_usd)))?'Price feed only':kind;
@@ -65,12 +65,6 @@
    });
  }
  async function init(){
-   document.querySelectorAll('[data-market-days]').forEach(b=>b.addEventListener('click',()=>{
-    marketDays=Number(b.dataset.marketDays)===7?7:30;
-    document.querySelectorAll('[data-market-days]').forEach(button=>button.classList.toggle('selected',Number(button.dataset.marketDays)===marketDays));
-    const heading=$('marketChangeColumn');if(heading)heading.textContent=marketDays+'D';
-    primary();extra();
-   }));
    document.querySelectorAll('[data-extra-market]').forEach(b=>b.addEventListener('click',()=>{marketFilter=b.dataset.extraMarket;extra()}));
    document.querySelectorAll('[data-record-filter]').forEach(b=>b.addEventListener('click',()=>{salesFilter=b.dataset.recordFilter;records()}));
    try{
