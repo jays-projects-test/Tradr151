@@ -29,7 +29,17 @@
 <section class="benchmarkCompare" aria-label="Pokémon investment performance compared with financial markets">
  <div class="benchmarkTop"><div class="benchmarkEyebrow">MARKET COMPARISON</div><h3>Pokémon vs the markets</h3></div>
  <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
- <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div><p class="benchmarkInstruction">Select an asset to view its historical price chart</p>
+ <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
+ <div class="cap-inline-title"><span>MARKET SIZE</span><button id="capMethodButton" class="gem-info-button" type="button" aria-label="How market caps are calculated" data-info="cap-method">i</button></div>
+ <div id="marketCapStrip" class="marketCapStrip" aria-label="Market size comparison"></div>
+ <details class="marketExpander" id="extraMarkets"><summary>Compare other TCGs &amp; sports <span aria-hidden="true">⌄</span></summary>
+  <div class="marketExtraFilters" id="marketExtraFilters" role="group" aria-label="Collectibles category filters">
+    <button type="button" class="selected" data-extra-market="all">All</button>
+    <button type="button" data-extra-market="tcg">Other TCGs</button>
+    <button type="button" data-extra-market="sports">Sports cards</button>
+  </div>
+  <div id="marketExtraRows" class="marketExtraRows"></div>
+ </details>
 </section>
 <div class="universePanel" id="universePanel"><div class="market-sentiment-layout">
  <div class="tradr-gauge">
@@ -101,7 +111,19 @@
       <div class="detailMain"><div class="panel chartPanel"><div class="sectionHead"><h3>Price history</h3><button class="help" data-info="history" aria-label="About price history">i</button></div><div class="chartArea" id="trendChart"></div><div class="chartPeriods"><span class="activePeriod">Recorded sales</span><span>GBP</span></div></div><div class="panel signalPanel"><div class="sectionHead"><h3>Tradr signal</h3><button class="help" data-info="signal" aria-label="About signals">i</button></div><div id="signalPanel"></div></div></div>
       <div class="analysis-grid" id="advancedIndicators"><div class="analysis-placeholder">Select a card and add matched completed sales to calculate advanced market indicators.</div></div>
       <details class="advancedPanel"><summary>Manage comparable sales <span>＋</span></summary><div class="advancedBody"><p class="muted small">One completed sale per line: YYYY-MM-DD,price,grade. Grades: raw, psa9, psa10. GBP only. Do not add asking prices.</p><textarea id="salesInput" rows="5" placeholder="2026-11-02,45,raw"></textarea><div class="buttonRow"><button class="primary" id="saveSales">Save sales</button><button class="secondary" id="clearSales">Clear</button></div><p id="salesFeedback" class="muted small"></p></div></details>
-    </section>
+    <section class="recordMarket" aria-label="Most expensive trading cards sold">
+ <div class="recordHead"><div><span class="recordEyebrow">THE CARD MARKET</span><h3>Record card sales</h3><p>Highest documented individual card sales</p></div><button class="recordInfo gem-info-button" type="button" data-info="record-sales" aria-label="About record sales">i</button></div>
+ <div class="recordTabs" role="group" aria-label="Card sale category">
+  <button type="button" class="selected" data-record-filter="all">All cards</button>
+  <button type="button" data-record-filter="pokemon">Pokémon</button>
+  <button type="button" data-record-filter="tcg">Other TCG</button>
+  <button type="button" data-record-filter="sports">Sports</button>
+ </div>
+ <div class="recordTableHead"><span>Card</span><span>Sold price (USD)</span></div>
+ <div class="recordList" id="recordSalesList"></div>
+ <div class="recordFooter"><span>Historic sales, not current valuations</span><a href="https://www.theorycards.org.uk/record-book/" target="_blank" rel="noopener noreferrer">More records</a></div>
+</section>
+</section>
     <section class="tab" id="watchlist" hidden><div class="sectionHead bigSection"><div><h2>Watchlist</h2><p class="muted">Cards on your radar.</p></div><button class="help" data-info="watchlist" aria-label="About watchlist">i</button></div><div class="listPanel" id="watchlistItems"></div></section>
     <section class="tab" id="portfolio" hidden><div class="sectionHead bigSection"><div><h2>Portfolio</h2><p class="muted">Track your cards, purchase prices and performance.</p></div></div><div class="portfolio-manual"><div class="portfolio-entry-actions"><button id="portfolioManualToggle" type="button" class="primary">Add card</button><label class="primary portfolio-import-action" for="portfolioCsv" role="button" tabindex="0">Import CSV</label><input type="file" id="portfolioCsv" accept=".csv,text/csv" hidden></div>
 <form id="portfolioManualForm" hidden class="portfolio-manual-form">
@@ -132,7 +154,7 @@
 <dialog id="infoDialog"><div class="modalHead"><h3 id="infoTitle">Information</h3><button class="modalClose" id="closeInfo" aria-label="Close">×</button></div><p id="infoText"></p></dialog>
 <dialog id="authDialog"><form id="authForm" method="dialog"><div class="modalHead"><h3>Sign in</h3><button class="modalClose" value="cancel" aria-label="Close">×</button></div><p class="muted small">Use an email magic link when cloud sync is configured. Otherwise your data stays on this device.</p><label>Email<input id="authEmail" placeholder="you@example.com" type="email" required></label><button id="sendLink" class="primary full" value="submit">Send sign-in link</button><p class="muted small" id="authStatus"></p></form></dialog>
 <script type="module" src="app.js"></script><script type="module" src="market.js"></script><script src="ui.js" defer></script>
-<script src="market-wide.js" defer></script><script src="market-compare.js" defer></script><script src="portfolio-import.js" defer></script><script src="gem-discovery.js" defer></script><script src="interface-updates.js" defer></script>
+<script src="market-wide.js" defer></script><script src="market-compare.js" defer></script><script src="card-markets.js" defer></script><script src="portfolio-import.js" defer></script><script src="gem-discovery.js" defer></script><script src="interface-updates.js" defer></script>
 <dialog id="marketCardDialog" class="market-card-dialog" aria-label="Market card details">
  <div class="modal-header"><span class="market-kicker">AFTERMARKET INTELLIGENCE</span><button id="closeMarketCard" class="modalClose" type="button" aria-label="Close card details">×</button></div>
  <div class="market-card-body" id="marketCardBody"><p class="muted">Loading card details...</p></div>
