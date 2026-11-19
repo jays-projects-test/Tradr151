@@ -569,3 +569,9 @@
 .market-period-switch button{border:0;background:transparent;color:#97abc1;border-radius:6px;font-size:10px;font-weight:650;min-width:34px;min-height:26px;cursor:pointer}
 .market-period-switch button.selected{background:#218fd1;color:#f7fbff}
 @media(max-width:650px){.market-period-switch button{min-width:32px}}
+
+/* Explicit compact controls, defeating stale browser-native button styles. */
+.markets-module-title .market-period-switch{display:inline-flex!important;flex:0 0 auto!important;width:auto!important;align-items:center;justify-content:center;gap:2px;padding:3px!important;border:1px solid #304d65!important;border-radius:8px!important;background:#101d2b!important}
+.markets-module-title .market-period-switch>button{appearance:none!important;-webkit-appearance:none!important;display:inline-flex!important;flex:0 0 auto!important;width:35px!important;min-width:35px!important;max-width:35px!important;height:28px!important;min-height:28px!important;max-height:28px!important;margin:0!important;padding:0!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:6px!important;background:transparent!important;color:#9cb2c6!important;font-size:11px!important;font-weight:650!important;line-height:1!important;box-shadow:none!important}
+.markets-module-title .market-period-switch>button.selected{background:#238ed0!important;color:#fff!important}
+@media(max-width:650px){.markets-module-title .market-period-switch>button{width:32px!important;min-width:32px!important;max-width:32px!important;height:27px!important;min-height:27px!important;max-height:27px!important}}
