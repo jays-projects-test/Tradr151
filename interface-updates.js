@@ -21,7 +21,7 @@ function saveManual(e){
   const existing=w.portfolio[key],oldQty=existing?.quantity||0,oldCost=existing?.cost||0;
   const newQty=oldQty+quantity;
   const avgCost=Number(((oldQty*oldCost+quantity*cost)/newQty).toFixed(2));
-  w.cards[key]={...(w.cards[key]||{}),id:key,language,name,setName,localId,edition,grade,image:'',provider:'Manual'};
+  w.cards[key]={...(w.cards[key]||{}),storageKey:key,id:key,language,name,setName,localId,edition,grade,image:'',provider:'Manual'};
   w.portfolio[key]={...(existing||{}),quantity:newQty,cost:avgCost,grade};
   bridge.save();
   $('portfolioManualForm').hidden=true;
