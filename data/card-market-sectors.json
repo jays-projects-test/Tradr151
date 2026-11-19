@@ -1,0 +1,204 @@
+{
+  "updated_at": "2026-11-19",
+  "methodology": "Each market uses a different supply definition. Graded-card values cover tracked slabs, not all raw cards or sealed products. Bitcoin is circulating supply times spot price. S&P 500 is the sum of constituent market caps. Missing values remain unavailable.",
+  "markets": [
+    {
+      "id": "pokemon",
+      "name": "Pokémon",
+      "sector": "tcg",
+      "cap_usd": 10100000000,
+      "cap_label": "Tracked graded slabs",
+      "coverage": "33.6M priced PSA / CGC / BGS slabs; excludes ungraded and unmatched copies",
+      "date": "2026-11-19",
+      "source": "https://cardtrack.com/pokemon/market-cap"
+    },
+    {
+      "id": "bitcoin",
+      "name": "Bitcoin",
+      "sector": "finance",
+      "cap_usd": 1280000000000,
+      "cap_label": "Circulating BTC market cap",
+      "coverage": "Spot-based approximation as of 19 Nov 2026",
+      "date": "2026-11-19",
+      "source": "https://cryptoslate.com/coins/Bitcoin/"
+    },
+    {
+      "id": "sp500",
+      "name": "S&P 500",
+      "sector": "finance",
+      "cap_usd": 61350000000000,
+      "cap_label": "Constituent company cap",
+      "coverage": "503 indexed companies; aggregate market-cap estimate",
+      "date": "2026-11",
+      "source": "https://marketcap.company/stock-indices/s-p-500-index-market-cap/"
+    },
+    {
+      "id": "onepiece",
+      "name": "One Piece",
+      "sector": "tcg",
+      "cap_usd": 1720000000,
+      "cap_label": "Tracked graded set value",
+      "coverage": "Assetra tracked graded sets; methodology and coverage differ from Pokémon estimate",
+      "date": "2026-11-18",
+      "source": "https://assetra.co/sets"
+    },
+    {
+      "id": "magic",
+      "name": "Magic: The Gathering",
+      "sector": "tcg",
+      "cap_usd": null,
+      "cap_label": "Not established",
+      "coverage": "Insufficient verified circulating card quantity and matching valuations for comparable total market cap",
+      "date": "2026-11-19",
+      "source": "https://assetra.co/methodology"
+    },
+    {
+      "id": "yugioh",
+      "name": "Yu-Gi-Oh!",
+      "sector": "tcg",
+      "cap_usd": null,
+      "cap_label": "Not established",
+      "coverage": "Tracked card price indices exist; no reliable complete-market cap verified",
+      "date": "2026-11-19",
+      "source": "https://tcgindex.io/tcg-market-index"
+    },
+    {
+      "id": "sports",
+      "name": "Sports cards",
+      "sector": "sports",
+      "cap_usd": null,
+      "cap_label": "Not established",
+      "coverage": "A single defensible market-wide stock of existing cards has not been established; annual revenue is not market cap",
+      "date": "2026-11-19",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    }
+  ],
+  "sales": [
+    {
+      "name": "Pikachu Illustrator",
+      "detail": "1998 Japanese Promo · PSA 10",
+      "category": "pokemon",
+      "price_usd": 16492000,
+      "date": "2026-02-16",
+      "venue": "Goldin",
+      "verification": "Confirmed auction",
+      "source": "https://www.guinnessworldrecords.com/world-records/782465-most-expensive-trading-card-sold-at-auction-overall"
+    },
+    {
+      "name": "Michael Jordan / Kobe Bryant Dual Logoman",
+      "detail": "2007–08 Exquisite · PSA 6",
+      "category": "sports",
+      "price_usd": 12932000,
+      "date": "2025-08-23",
+      "venue": "Heritage Auctions",
+      "verification": "Confirmed auction",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    },
+    {
+      "name": "Mickey Mantle",
+      "detail": "1952 Topps · SGC 9.5",
+      "category": "sports",
+      "price_usd": 12600000,
+      "date": "2022-08-28",
+      "venue": "Heritage Auctions",
+      "verification": "Confirmed auction",
+      "source": "https://www.guinnessworldrecords.com/world-records/782465-most-expensive-trading-card-sold-at-auction-overall"
+    },
+    {
+      "name": "Shohei Ohtani Dual Gold Logoman",
+      "detail": "2026 Topps Chrome · 1/1",
+      "category": "sports",
+      "price_usd": 11000000,
+      "date": "2026-07-01",
+      "date_precision": "month",
+      "venue": "Private deal",
+      "verification": "Reported private sale",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    },
+    {
+      "name": "Michael Jordan / LeBron James Dual Logoman",
+      "detail": "2006–07 Exquisite · PSA 5",
+      "category": "sports",
+      "price_usd": 10000000,
+      "date": "2025-10-01",
+      "date_precision": "month",
+      "venue": "Private deal",
+      "verification": "Reported private sale",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    },
+    {
+      "name": "Art Academy Pikachu",
+      "detail": "2015 Japanese XY-P · PSA 10",
+      "category": "pokemon",
+      "price_usd": 8400000,
+      "date": "2026-09-27",
+      "venue": "Fanatics Collect",
+      "verification": "Reported auction",
+      "source": "https://www.pallet.club/leaderboard/million-dollar-cards?year=2026"
+    },
+    {
+      "name": "Honus Wagner",
+      "detail": "1909 T206 · SGC 2",
+      "category": "sports",
+      "price_usd": 7250000,
+      "date": "2022-08-01",
+      "date_precision": "month",
+      "venue": "Goldin",
+      "verification": "Confirmed auction",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    },
+    {
+      "name": "Babe Ruth",
+      "detail": "1914 Baltimore News · SGC 3",
+      "category": "sports",
+      "price_usd": 7200000,
+      "date": "2023-12-01",
+      "date_precision": "month",
+      "venue": "Robert Edward Auctions",
+      "verification": "Confirmed auction",
+      "source": "https://www.theorycards.org.uk/record-book/"
+    },
+    {
+      "name": "Art Academy Mudkip",
+      "detail": "2015 Japanese Promo · PSA 10",
+      "category": "pokemon",
+      "price_usd": 4880000,
+      "date": "2026-10-25",
+      "venue": "Goldin",
+      "verification": "Reported auction",
+      "source": "https://assetra.co/insights/art-academy-mudkip-4-88-million"
+    },
+    {
+      "name": "Alpha Black Lotus",
+      "detail": "1993 Magic: The Gathering · CGC Pristine 10",
+      "category": "magic",
+      "price_usd": 3000000,
+      "date": "2024-04-01",
+      "date_precision": "month",
+      "venue": "Private sale",
+      "verification": "Reported private sale",
+      "source": "https://www.guinnessworldrecords.com/world-records/647417-most-expensive-magic-the-gathering-card-sold-at-auction"
+    },
+    {
+      "name": "Monkey D. Luffy Championship Winner",
+      "detail": "2024 Chinese Year One 1st Place · 1/1",
+      "category": "onepiece",
+      "price_usd": 713700,
+      "date": "2026-08-01",
+      "date_precision": "month",
+      "venue": "Goldin",
+      "verification": "Reported auction",
+      "source": "https://shonengrail.com/one-piece/most-expensive-cards"
+    },
+    {
+      "name": "Tyler the Great Warrior",
+      "detail": "Yu-Gi-Oh! · 1/1",
+      "category": "yugioh",
+      "price_usd": 311211,
+      "date": "2023-04-29",
+      "venue": "Online auction",
+      "verification": "Confirmed auction",
+      "source": "https://tcgemporium.com/guides/most-expensive-yugioh-cards"
+    }
+  ]
+}
