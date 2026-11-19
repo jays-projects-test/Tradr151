@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T19:17:32.519Z",
+  "updated_at": "2026-11-19T00:19:24.178Z",
   "observations": [
     {
       "card_id": "en:base1-1",
@@ -198,6 +198,204 @@
       "currency": "EUR",
       "price": 36.68,
       "observed_at": "2026-11-18T19:16:15.653Z"
+    },
+    {
+      "card_id": "en:base1-1",
+      "name": "Alakazam",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 76.03,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-1",
+      "name": "Alakazam",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 57.77,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-2",
+      "name": "Blastoise",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 233.63,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-2",
+      "name": "Blastoise",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 135.44,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-4",
+      "name": "Charizard",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 1001.05,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-4",
+      "name": "Charizard",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 453.87,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-6",
+      "name": "Gyarados",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 62.26,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-6",
+      "name": "Gyarados",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 22.78,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-9",
+      "name": "Magneton",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 30.54,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-9",
+      "name": "Magneton",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 25.41,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-11",
+      "name": "Nidoking",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 41.62,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-11",
+      "name": "Nidoking",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 31.49,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-12",
+      "name": "Ninetales",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 37.42,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-12",
+      "name": "Ninetales",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 17.71,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-13",
+      "name": "Poliwrath",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 35.55,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-13",
+      "name": "Poliwrath",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 29.2,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-14",
+      "name": "Raichu",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 63.81,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-14",
+      "name": "Raichu",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 49.99,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-15",
+      "name": "Venusaur",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 134.94,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-15",
+      "name": "Venusaur",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 103.64,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-16",
+      "name": "Zapdos",
+      "provider": "TCGplayer via TCGdex",
+      "variant": "holofoil",
+      "currency": "USD",
+      "price": 57.92,
+      "observed_at": "2026-11-19T00:19:24.178Z"
+    },
+    {
+      "card_id": "en:base1-16",
+      "name": "Zapdos",
+      "provider": "Cardmarket via TCGdex",
+      "variant": "market_guide",
+      "currency": "EUR",
+      "price": 36.68,
+      "observed_at": "2026-11-19T00:19:24.178Z"
     }
   ]
 }
