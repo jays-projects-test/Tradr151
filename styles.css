@@ -372,3 +372,28 @@
  .benchmarkName small{font-size:9px}
  .benchmarkTile>strong{font-size:20px}
 }
+
+/* Clickable benchmark performance chart, compact on mobile */
+.benchmarkTile{appearance:none;width:100%;text-align:left;cursor:pointer;color:inherit;font-family:inherit;transition:border-color .15s,background .15s}
+.benchmarkTile:hover,.benchmarkTile:focus-visible{border-color:#3c8bba;background:#193149;outline:none}
+.benchmarkInstruction{font-size:10px;color:#8098af;text-align:right;margin:10px 0 0}
+.benchmark-chart-dialog{position:fixed;inset:0;margin:auto;width:min(780px,calc(100vw - 20px));max-height:90vh;overflow:auto;border-radius:18px;background:#101b29;color:#f2f9ff;border:1px solid #33506a;padding:21px 22px;box-shadow:0 30px 85px #000b}
+.benchmark-chart-dialog::backdrop{background:rgba(0,5,15,.8);backdrop-filter:blur(4px)}
+.benchmark-dialog-header{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.benchmark-dialog-header h2{font-size:25px;letter-spacing:-.5px;margin:5px 0}
+.benchmark-dialog-header p{margin:0;font-size:12px}
+.benchmark-dialog-header button{border:1px solid #375069;background:#1c3043;color:white;border-radius:50%;width:36px;height:36px;font-size:25px;cursor:pointer}
+.benchmark-chart-value{margin:20px 0 14px;display:flex;gap:10px;align-items:baseline}
+.benchmark-chart-value strong{font-size:30px;font-variant-numeric:tabular-nums}
+.benchmark-chart-value span{font-size:11px;color:#8da6b9}
+.benchmark-chart-host{border:1px solid #283e54;border-radius:13px;background:#0e1928;min-height:220px;padding:13px}
+.benchmark-chart-host svg{display:block;width:100%;height:auto;max-height:380px}
+.benchmark-chart-foot{font-size:10px;color:#8296a9;padding-top:13px;line-height:1.5}
+.benchmark-chart-bottom{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#91acc2;padding:10px 10px 0}
+.benchmark-chart-bottom b{color:#eaf7ff}
+.benchmark-chart-loading{height:230px;display:grid;place-items:center;font-size:13px;color:#91a8bb}
+.benchmark-chart-unavailable{min-height:190px;display:flex;flex-direction:column;justify-content:center;gap:20px;text-align:center;color:#9fb2c6;font-size:12px;line-height:1.55;padding:16px}
+.benchmark-two-observations{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #2a4055;padding:10px 0 14px}
+.benchmark-two-observations span{display:flex;flex-direction:column;gap:8px}
+.benchmark-two-observations b{color:#e5f2ff;font-size:21px}
+@media(max-width:650px){.benchmark-chart-dialog{padding:16px 12px;border-radius:15px}.benchmark-chart-value strong{font-size:26px}.benchmark-chart-host{padding:5px;min-height:185px}.benchmark-chart-unavailable{padding:10px;font-size:11px;min-height:185px}}
