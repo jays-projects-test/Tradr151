@@ -47,8 +47,8 @@ function buildCandidates(){
 }
 const button=(item)=>{
  const {id,product,variant,change,gap,price,asOf}=item;
- const label=change!==null?'7D '+pct(change):'Guide / listing gap '+(gap||0).toFixed(1)+'%';
- const status=change!==null&&change<0?'drop':change!==null&&change>0?'rise':'neutral';
+ const label=(mode==='gaps'&&gap!==null)?'Pricing gap '+gap.toFixed(1)+'%':change!==null?'7D '+pct(change):'Pricing gap '+(gap||0).toFixed(1)+'%';
+ const status=mode==='gaps'?'neutral':change!==null&&change<0?'drop':change!==null&&change>0?'rise':'neutral';
  const image=product.img?.startsWith('https://')?'<img loading="lazy" src="'+escape(product.img)+'" alt="">':'<span class="gem-img-placeholder"></span>';
  return '<button type="button" class="gem-candidate" data-gem-product="'+Number(id)+'" data-gem-variant="'+escape(variant)+'">'+image+'<span class="gem-candidate-main"><b>'+escape(product.name)+'</b><small>'+escape(product.set)+' · '+escape(variant)+'</small><small>'+escape(asOf)+'</small></span><span class="gem-candidate-stats"><b>$'+price.toFixed(2)+'</b><em class="'+status+'">'+label+'</em></span></button>';
 };
@@ -72,10 +72,10 @@ function render(){
   return;
  }
  if(!candidates){host.innerHTML='<div class="gem-note">Select Refresh to screen the market.</div>';return;}
- const list=candidates.filter(r=>mode==='dips'?(r.change!==null&&r.change<=-12):r.change!==null&&r.change>=12).slice(0,24);
- $('gemListTitle').textContent=mode==='dips'?'Largest observed price drops':'Recent price momentum';
- host.innerHTML=list.length?list.map(button).join(''):'<div class="gem-note">No qualifying '+(mode==='dips'?'price drops':'momentum signals')+' with enough dated observations yet. Cards will appear as historical comparisons accumulate.</div>';
- $('gemFeedStatus').textContent='Observed market-price changes · values in USD. These are leads for research, not automatic buy recommendations.';
+ const list=candidates.filter(r=>mode==='dips'?(r.change!==null&&r.change<=-12):mode==='momentum'?(r.change!==null&&r.change>=12):(r.gap!==null&&r.gap>=22)).slice(0,24);
+ $('gemListTitle').textContent=mode==='dips'?'Largest observed price drops':mode==='momentum'?'Recent price momentum':'Cards with notable pricing gaps';
+ host.innerHTML=list.length?list.map(button).join(''):'<div class="gem-note">No qualifying '+(mode==='dips'?'price drops':mode==='momentum'?'momentum signals':'pricing gaps')+' found in the current market data.</div>';
+ $('gemFeedStatus').textContent='Market research shortlist · USD values. Pricing gaps compare market guides with asking-price medians; they do not establish underpricing or guarantee a buy.';
 }
 async function refresh(){
  try{await getData();buildCandidates();loaded=true;render()}
@@ -96,7 +96,7 @@ function init(){
  $('gemSearchButton')?.addEventListener('click',search);
  $('gemSearchInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')search()});
  $('gemRefreshButton')?.addEventListener('click',refresh);
- document.querySelectorAll('[data-gem-filter]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.gemFilter;if(!loaded&&['dips','momentum'].includes(mode))refresh();else render()}));
+ document.querySelectorAll('[data-gem-filter]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.gemFilter;if(!loaded&&['dips','momentum','gaps'].includes(mode))refresh();else render()}));
  document.addEventListener('click',e=>{
   const product=e.target.closest('[data-gem-product]');
   if(product){window.TradrMarket?.openCard(Number(product.dataset.gemProduct),product.dataset.gemVariant);return;}
