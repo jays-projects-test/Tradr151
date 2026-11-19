@@ -249,3 +249,44 @@
  .gem-candidate img,.gem-img-placeholder{width:35px;height:49px}
  .gem-candidate-stats b{font-size:12px}
 }
+
+/* V5: aligned portfolio controls and readable Gems rhythm */
+.brand-name .brand-initial,.mobileBrand .brand-initial{color:#159bff;font-weight:850;letter-spacing:-.06em}
+.brand-name .brand-number{color:var(--blue)}
+.portfolio-manual{margin:16px 0 0}
+.portfolio-entry-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;align-items:stretch}
+.portfolio-entry-actions>button,.portfolio-entry-actions>.portfolio-import-action{width:100%;min-width:0;min-height:52px;height:52px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0;border-radius:12px;font-weight:720;font-size:15px;line-height:1.2;white-space:nowrap;text-align:center;cursor:pointer}
+.portfolio-entry-actions>.portfolio-import-action{background:#182a3b;color:#d8e9f8;border:1px solid #36506a}
+.portfolio-entry-actions>.portfolio-import-action:hover{background:#25435c}
+.portfolio-manual-form{margin-top:16px}
+#portfolioImportStatus{margin:8px 0 16px}
+#portfolioItems{margin-top:14px}
+.gem-search-panel{margin:23px 0 27px;padding:20px}
+.gem-nav{gap:10px;margin:0 0 25px;padding:0 0 5px;scrollbar-width:none}
+.gem-nav::-webkit-scrollbar{display:none}
+.gem-nav button{padding:13px 14px;margin:0;font-size:13px;min-height:43px}
+.gem-summary{margin:0 0 16px;gap:16px;min-height:44px}
+.gem-summary h3{font-size:19px;line-height:1.25}
+.gem-summary button{min-height:40px;padding:9px 16px}
+#gemFeedStatus{margin:0 0 15px;line-height:1.55}
+.gem-note{padding:25px 23px;line-height:1.7}
+.gem-note p{line-height:1.65;margin-top:11px}
+.gem-candidates{gap:9px;margin:4px 0 22px}
+.gem-candidate,.gem-saved{padding:16px 13px;border:1px solid #263e53;border-radius:12px;background:#0f1d2b;min-height:76px}
+.gem-candidate:hover,.gem-saved:hover{background:#172b3e}
+.gem-candidate-main{gap:5px}
+.tradr-terms{margin:18px 0 24px;border:1px solid #293c50;border-radius:12px;background:#101d2a;padding:14px 16px;color:#99b1c3}
+.tradr-terms summary{cursor:pointer;font-weight:650;color:#d2e3f1;font-size:13px}
+.tradr-terms p{font-size:12px;line-height:1.6;margin:12px 0 0}
+@media(max-width:650px){
+ .portfolio-entry-actions{gap:10px}
+ .portfolio-entry-actions>button,.portfolio-entry-actions>.portfolio-import-action{min-height:48px;height:48px;font-size:14px;padding:10px 6px}
+ .gem-search-panel{margin:16px 0 22px;padding:15px}
+ .gem-nav{gap:5px;margin-bottom:22px}
+ .gem-nav button{padding:12px 13px}
+ .gem-summary{margin-bottom:14px}
+ .gem-summary h3{font-size:18px}
+ .gem-note{padding:20px 18px;line-height:1.6}
+ .gem-candidates{gap:8px}
+ .gem-candidate,.gem-saved{padding:13px 10px}
+}
