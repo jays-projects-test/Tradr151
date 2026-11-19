@@ -453,7 +453,7 @@
 .marketExpander{margin-top:12px;border-top:1px solid #2a4054;padding-top:10px}
 .marketExpander summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;font-size:12px;font-weight:670;color:#a3c4dc;list-style:none}
 .marketExpander summary::-webkit-details-marker{display:none}
-.marketExpander[open] summary>span{transform:rotate(180deg)}
+.marketExpander[open] summary>.markets-summary-arrow{transform:rotate(180deg)}
 .marketExtraFilters{display:flex;gap:8px;overflow-x:auto;margin:14px 0 10px}
 .marketExtraFilters button,.recordTabs button{border:1px solid #2e4358;background:#132334;color:#9aafc2;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:11px;white-space:nowrap}
 .marketExtraFilters button.selected,.recordTabs button.selected{background:#163b58;color:#c7ecff;border-color:#2f7ba9}
@@ -555,3 +555,9 @@
  .market-rank-change{font-size:10px}
  .marketExpander summary{font-size:11px}
 }
+
+/* Compact market-size info popup: brief, scannable groupings */
+#infoText{white-space:pre-line;line-height:1.55;font-size:13px;letter-spacing:0;overflow-wrap:break-word}
+.marketExpander summary>span:first-child{transform:none!important;writing-mode:horizontal-tb}
+.marketExpander summary>.markets-summary-arrow{transform:rotate(0deg)}
+.marketExpander[open] summary>.markets-summary-arrow{transform:rotate(180deg)}
