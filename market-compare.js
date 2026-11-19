@@ -32,7 +32,13 @@
     if(!r.ok)return null;
     const d=await r.json();
     if(!d?.series||!d?.source||!['pokemon','bitcoin','sp500'].every(k=>Array.isArray(d.series[k])))return null;
-    history=d;return d;
+    history=d;
+    for(const asset of assets){
+      const points=d.series[asset.key].filter(p=>Array.isArray(p)&&Number.isFinite(Number(p[1]))&&Number(p[1])>0);
+      if(points.length>1)asset.value=+(Number(points.at(-1)[1])-100).toFixed(2);
+    }
+    renderTiles();
+    return d;
    }catch(e){return null}
   })();
   return loadPromise;
