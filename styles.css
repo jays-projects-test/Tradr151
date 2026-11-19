@@ -164,3 +164,12 @@
 .universeTabs{margin-top:14px}
 .universeColumns{margin-top:10px}
 @media(max-width:720px){.universePanel{padding:13px}.tradr-gauge svg{max-width:180px}.market-sentiment-layout{grid-template-columns:1fr}.market-fast-stats>div{padding:11px}.market-data-banner{font-size:10px}}
+
+.siteLogo{width:36px;height:36px;object-fit:cover;border-radius:10px;flex:none;display:inline-block}
+.siteLogo.mini{width:32px;height:32px;border-radius:9px;margin-right:7px;vertical-align:middle}
+.portfolio-import-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 14px}
+.portfolio-import-tools .portfolio-import-action{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:12px 18px;border-radius:12px;font-weight:650;text-decoration:none}
+.portfolio-import-tools button{cursor:pointer}
+#portfolioImportStatus{line-height:1.55;margin:4px 0 12px;min-height:18px}
+.listEntry label.small{white-space:nowrap}
+@media(max-width:650px){.portfolio-import-tools>*{flex:1}.listEntry{flex-wrap:wrap}.listEntry .grow{min-width:60%}}
