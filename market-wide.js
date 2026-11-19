@@ -27,12 +27,12 @@ function summary(){
  set('gauge30d',month.qualified>=30?pct(month.median_change):'—');
  if(coverage.products_priced>0){
    set('marketAssets',number(coverage.products_priced));
-   set('marketAssetsMeta','Market-wide priced products · US guide data');
+   set('marketAssetsMeta','Cards being tracked');
  }
  const sourceTime=board?.updated_at?new Date(board.updated_at):null;
- set('universeFreshness',sourceTime?'fetched '+sourceTime.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+(Date.now()-sourceTime.getTime()>36*3600000?' · stale':''):'awaiting market feed');
+ set('universeFreshness',sourceTime?sourceTime.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+(Date.now()-sourceTime.getTime()>36*3600000?' · delayed':''):'Pending');
  set('gaugeFresh',sourceTime?'Daily':'Pending');
- set('gaugeFreshSub',sourceTime?'US price-guide snapshot · not live transaction sales':'Waiting for first guide feed');
+ set('gaugeFreshSub',sourceTime?'Updated '+sourceTime.toLocaleDateString('en-GB'):'Waiting for first update');
  // Data-derived market breadth and momentum proxy. Avoid invented volume or global cap.
  const representative=week.qualified>=250 && (coverage.groups_visited||0)>=Math.ceil((coverage.groups_total||221)*0.75)
    && Number.isFinite(week.breadth)&&Number.isFinite(week.median_change);
@@ -50,7 +50,7 @@ function summary(){
  }
  // "Fear & Greed" is a guide-price sentiment proxy only. Never overwrite verified-sale metrics.
  set('marketSentiment',score===null?'—':score+'/100');
- set('marketMood',score===null?'Awaiting sufficient 7D guide history':'Market-guide sentiment proxy · '+week.qualified+' cards');
+ set('marketMood',score===null?'Calculating trend':'Market trend · '+week.qualified+' cards');
 }
 function row(r,{rank=null}={}){
  const image=typeof r.image==='string'&&r.image.startsWith('https://')?'<img src="'+esc(r.image)+'" alt="" loading="lazy">':'<span class="noCardImage"></span>';
@@ -64,7 +64,7 @@ function renderBoard(){
  function list(id,items){
    const host=el(id);if(!host)return;
    host.innerHTML=items?.length?items.slice(0,5).map(r=>row(r)).join(''):
-     '<div class="board-empty">No '+(period==='week'?'7-day':'30-day')+' comparable price movements yet. Historical daily samples are accumulating.</div>';
+     '<div class="board-empty">'+(period==='week'?'7-day':'30-day')+' rankings will appear when enough prices are available.</div>';
  }
  list('universeGainers',details.gainers);
  list('universeLosers',details.losers);
