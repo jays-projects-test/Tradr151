@@ -113,7 +113,7 @@ def parse_csv(content):
                 if n is not None:
                     result[asset][date] = n
     if min(len(r) for r in result.values()) < 8:
-        raise ValueError("Too few real observations in CSV: " + str({k: len(v) for k, v in result.items()}))
+        raise ValueError("Too few real observations in CSV: " + str({k: len(v) for k, v in result.items()}) + " HEADERS " + str(names))
     # Monthly match: wide history can contain different trading dates for each series.
     # Use each asset's first observed value from the same September 2021 starting month.
     final = {}
