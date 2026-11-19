@@ -31,8 +31,8 @@
  <p class="benchmarkRange" id="benchmarkRange">2021–2026 · historical returns</p>
  <div id="benchmarkTiles" class="benchmarkTiles" aria-live="polite"></div>
  <div class="markets-module">
-  <div class="markets-module-title"><h4>Market overview</h4><button id="capMethodButton" class="gem-info-button" type="button" aria-label="About market values" data-info="cap-method">i</button></div>
-  <div class="markets-table-head"><span>Market</span><span>Value (USD)</span><span>30D</span></div>
+  <div class="markets-module-title"><h4>Market overview</h4><div class="market-period-switch" role="group" aria-label="Market change timeframe"><button type="button" data-market-days="7">7D</button><button type="button" data-market-days="30" class="selected">30D</button></div><button id="capMethodButton" class="gem-info-button" type="button" aria-label="About market values" data-info="cap-method">i</button></div>
+  <div class="markets-table-head"><span>Market</span><span>Value (USD)</span><span id="marketChangeColumn">30D</span></div>
   <div id="marketCapStrip" class="marketCapStrip" aria-label="Pokémon and financial market size comparison"></div>
   <details class="marketExpander" id="extraMarkets"><summary><span>All trading-card markets</span><span class="markets-summary-arrow" aria-hidden="true">⌄</span></summary>
    <div class="marketExtraFilters" id="marketExtraFilters" role="group" aria-label="Collectibles category filters">
