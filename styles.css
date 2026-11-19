@@ -439,3 +439,68 @@
  .gem-intel-item b{font-size:12px}
  .gem-note{padding:17px}
 }
+
+/* Extended financial-market sizes and multi-hobby documented card sales */
+.cap-inline-title{display:flex;align-items:center;gap:9px;margin:17px 0 10px}
+.cap-inline-title>span{font-size:10px;letter-spacing:1.4px;font-weight:750;color:#80bce3}
+.cap-inline-title .gem-info-button{width:22px;height:22px;font-size:11px}
+.marketCapStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.market-cap-item{min-width:0;border:1px solid #30465d;background:#112538;border-radius:9px;padding:12px 11px;display:flex;flex-direction:column;gap:5px;color:#e9f6ff;text-decoration:none}
+.market-cap-item:hover{border-color:#3c91c6;background:#172f47}
+.market-cap-label{font-size:11px;color:#9db5c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.market-cap-item b{font-size:18px;letter-spacing:-.35px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.market-cap-item small{font-size:9px;color:#829db3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.marketExpander{margin-top:12px;border-top:1px solid #2a4054;padding-top:10px}
+.marketExpander summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;font-size:12px;font-weight:670;color:#a3c4dc;list-style:none}
+.marketExpander summary::-webkit-details-marker{display:none}
+.marketExpander[open] summary>span{transform:rotate(180deg)}
+.marketExtraFilters{display:flex;gap:8px;overflow-x:auto;margin:14px 0 10px}
+.marketExtraFilters button,.recordTabs button{border:1px solid #2e4358;background:#132334;color:#9aafc2;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:11px;white-space:nowrap}
+.marketExtraFilters button.selected,.recordTabs button.selected{background:#163b58;color:#c7ecff;border-color:#2f7ba9}
+.marketExtraRows{display:grid;gap:0}
+.market-extra-row{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid #253b4e;padding:12px 2px}
+.market-extra-identity,.market-extra-value{display:flex;flex-direction:column;gap:4px}
+.market-extra-identity{min-width:0}
+.market-extra-identity b{font-size:12px;color:#e9f5ff}
+.market-extra-identity small{font-size:10px;color:#7d9bb2}
+.market-extra-value{text-align:right;flex:none}
+.market-extra-value strong{font-size:15px;color:#e7f3fd;font-variant-numeric:tabular-nums}
+.market-extra-value a{font-size:10px;color:#7dbfec;text-decoration:none}
+.market-extra-caption{font-size:10px;line-height:1.5;color:#7793aa;margin:12px 0 0}
+.recordMarket{border:1px solid #2c455e;background:#0e1b2a;border-radius:11px;margin:20px 0 26px;padding:20px 19px}
+.recordHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.recordEyebrow{font-size:10px;font-weight:750;letter-spacing:1.4px;color:#77bcea}
+.recordHead h3{font-size:21px;line-height:1.25;margin:5px 0}
+.recordHead p{font-size:11px;color:#8ca6bd;margin:5px 0 0}
+.recordTabs{display:flex;gap:7px;overflow-x:auto;margin:20px 0 13px;padding-bottom:3px}
+.recordTableHead{display:grid;grid-template-columns:1fr auto;border-bottom:1px solid #2a4156;padding:0 0 11px 31px;color:#7c96ac;font-size:10px}
+.recordList{display:grid}
+.record-entry{display:flex;align-items:center;gap:11px;color:#e7f2ff;text-decoration:none;padding:13px 0;border-bottom:1px solid #243b50;min-width:0}
+.record-entry:hover{background:#12283b}
+.record-rank{flex:none;color:#728da5;font-size:12px;width:18px;text-align:center;font-variant-numeric:tabular-nums}
+.record-card{flex:1;display:flex;flex-direction:column;min-width:0;gap:4px}
+.record-card b{font-size:12px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.record-card small{font-size:10px;color:#9eb4c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.record-card>span{font-size:9px;color:#688aa7;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.record-price{display:flex;flex:none;flex-direction:column;align-items:flex-end;gap:5px;font-size:14px;font-weight:730;font-variant-numeric:tabular-nums;color:#e9f4ff}
+.record-price small{font-size:9px;color:#67bfe8;font-weight:550}
+.recordFooter{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;color:#7c94ac;margin-top:14px}
+.recordFooter a{font-size:10px;color:#71bbed;text-decoration:none}
+@media(max-width:650px){
+ .marketCapStrip{gap:6px}
+ .market-cap-item{padding:10px 7px;gap:5px}
+ .market-cap-label{font-size:10px}
+ .market-cap-item b{font-size:15px}
+ .market-cap-item small{font-size:8px}
+ .marketExpander{margin-top:13px}
+ .recordMarket{padding:15px 12px;margin:18px 0 24px}
+ .recordHead h3{font-size:19px}
+ .recordTabs{gap:6px}
+ .recordTabs button{padding:9px 10px}
+ .record-card b{font-size:11px}
+ .record-card small{font-size:9px}
+ .record-card>span{font-size:8px}
+ .record-price{font-size:12px}
+ .record-entry{gap:7px}
+ .record-rank{width:14px}
+}
