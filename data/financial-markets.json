@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-21T17:57:53.762301+00:00",
+  "updated_at": "2026-11-21T23:14:45.296472+00:00",
   "assets": {
     "bitcoin": {
       "symbol": "BTC-USD",
-      "value_usd": 60006.92,
-      "change_7d": -6.43,
-      "change_30d": -26.2,
+      "value_usd": 60160.55,
+      "change_7d": -6.19,
+      "change_30d": -26.01,
       "as_of": "2026-11-21",
       "source": "Yahoo Finance chart",
       "points": [
@@ -267,10 +267,10 @@
         ],
         [
           "2026-11-21",
-          60006.92
+          60160.55
         ]
       ],
-      "market_cap_usd": 1205914211177
+      "market_cap_usd": 1210574025186
     },
     "sp500": {
       "symbol": "^GSPC",
