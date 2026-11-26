@@ -575,3 +575,24 @@
 .markets-module-title .market-period-switch>button{appearance:none!important;-webkit-appearance:none!important;display:inline-flex!important;flex:0 0 auto!important;width:35px!important;min-width:35px!important;max-width:35px!important;height:28px!important;min-height:28px!important;max-height:28px!important;margin:0!important;padding:0!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:6px!important;background:transparent!important;color:#9cb2c6!important;font-size:11px!important;font-weight:650!important;line-height:1!important;box-shadow:none!important}
 .markets-module-title .market-period-switch>button.selected{background:#238ed0!important;color:#fff!important}
 @media(max-width:650px){.markets-module-title .market-period-switch>button{width:32px!important;min-width:32px!important;max-width:32px!important;height:27px!important;min-height:27px!important;max-height:27px!important}}
+
+/* Mobile viewport integrity: no sideways page drag or clipped movers */
+html,body{max-width:100%;overflow-x:clip}
+.shell,.main,.tab,.universePanel,.universeColumns,.universeColumns>div,.universeList{min-width:0;max-width:100%}
+.universeColumns>div{overflow:hidden}
+.universeList .wideRow.marketProductRow{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(78px,94px);align-items:center;column-gap:9px;width:100%!important;min-width:0!important;max-width:100%;padding:11px 0!important;margin:0;text-align:left;background:transparent;border:0;border-bottom:1px solid #263c50;box-sizing:border-box}
+.universeList .wideAsset{display:flex;min-width:0!important;width:auto;max-width:100%;overflow:hidden}
+.universeList .wideAsset>span:last-child{display:block;flex:1;min-width:0!important;overflow:hidden}
+.universeList .wideAsset b,.universeList .wideAsset small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.universeList .widePrice{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;min-width:0!important;width:100%;max-width:100%;overflow:hidden;text-align:right}
+.universeList .widePrice strong{font-size:13px;white-space:nowrap;max-width:100%;font-variant-numeric:tabular-nums}
+.universeList .widePrice small{max-width:100%;text-overflow:ellipsis}
+@media(max-width:650px){
+ .universeColumns{grid-template-columns:minmax(0,1fr)!important;gap:16px}
+ .universeList .wideRow.marketProductRow{grid-template-columns:minmax(0,1fr) 78px;column-gap:7px}
+ .universeList .wideAsset{gap:7px}
+ .universeList .wideAsset b{font-size:11px}
+ .universeList .wideAsset small{font-size:9px}
+ .universeList .widePrice strong{font-size:12px}
+ .universeList .widePrice small{font-size:10px}
+}
