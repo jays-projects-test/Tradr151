@@ -43,10 +43,16 @@ function summary(){
  }
  set('gaugeValue',score===null?'—':score);
  set('gaugeLabel',score===null?'Building the market index':score<20?'Extreme Fear':score<40?'Fear':score<60?'Neutral':score<80?'Greed':'Extreme Greed');
- const needle=el('gaugeNeedle');if(needle){
-   needle.hidden=score===null;
-   needle.setAttribute('visibility',score===null?'hidden':'visible');
-   if(score!==null)needle.setAttribute('transform','rotate('+((score-50)*1.8).toFixed(1)+' 120 114)');
+ const marker=el('gaugeMarker');
+ if(marker){
+   const valid=Number.isFinite(score);
+   marker.setAttribute('visibility',valid?'visible':'hidden');
+   if(valid){
+     const radians=Math.PI*between(score,0,100)/100;
+     marker.setAttribute('cx',(120-95*Math.cos(radians)).toFixed(2));
+     marker.setAttribute('cy',(114-95*Math.sin(radians)).toFixed(2));
+     marker.setAttribute('aria-label',String(score)+' out of 100');
+   }
  }
  // "Fear & Greed" is a guide-price sentiment proxy only. Never overwrite verified-sale metrics.
  set('marketSentiment',score===null?'—':score+'/100');
