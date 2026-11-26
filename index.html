@@ -4,7 +4,7 @@
 <meta name="description" content="Tradr151 is a Pokémon card market insights and portfolio research platform. Explore market trends, card pricing and your collection.">
 <meta property="og:type" content="website"><meta property="og:title" content="Tradr151 — Pokémon Market Insights"><meta property="og:description" content="Track the Pokémon card market, research cards and manage your portfolio."><meta property="og:image" content="https://jays-projects-test.github.io/Tradr151/assets/tradr151-logo.png">
 <link rel="canonical" href="https://jays-projects-test.github.io/Tradr151/"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="Tradr151"><link rel="icon" type="image/png" sizes="96x96" href="assets/tradr151-logo.png"><link rel="apple-touch-icon" href="assets/tradr151-logo.png"><link rel="manifest" href="site.webmanifest">
-<title>Tradr151 — The card market</title><link rel="stylesheet" href="styles.css?v=market-toggle-fix-2">
+<title>Tradr151 — The card market</title><link rel="stylesheet" href="styles.css?v=mobile-overflow-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Tradr151","url":"https://jays-projects-test.github.io/Tradr151/","description":"Pokémon card market insights and portfolio tracking","image":"https://jays-projects-test.github.io/Tradr151/assets/tradr151-logo.png"}</script>
 </head><body>
 <div class="shell">
@@ -54,7 +54,7 @@
    <path d="M 87.4 24.8 A 95 95 0 0 1 152.6 24.8" stroke="#e4c553" stroke-width="19" fill="none"/>
    <path d="M 152.6 24.8 A 95 95 0 0 1 196.9 57.2" stroke="#72c88b" stroke-width="19" fill="none"/>
    <path d="M 196.9 57.2 A 95 95 0 0 1 215 114" stroke="#30bb93" stroke-width="19" fill="none"/>
-   <g id="gaugeNeedle" hidden><line x1="120" y1="114" x2="120" y2="30" stroke="#eef8ff" stroke-width="4" stroke-linecap="round"/><circle cx="120" cy="114" r="7" fill="#eef8ff"/></g>
+   <circle id="gaugeMarker" cx="120" cy="19" r="9" fill="#364459" stroke="#b7c5d8" stroke-width="4" visibility="hidden" aria-hidden="true"/>
    <text x="120" y="101" font-size="35" text-anchor="middle" font-weight="700" fill="#f0f8ff" id="gaugeValue">—</text>
    <text x="25" y="136" font-size="11" fill="#8195ab" text-anchor="middle">0</text>
    <text x="215" y="136" font-size="11" fill="#8195ab" text-anchor="middle">100</text>
@@ -157,7 +157,7 @@
 <dialog id="infoDialog"><div class="modalHead"><h3 id="infoTitle">Information</h3><button class="modalClose" id="closeInfo" aria-label="Close">×</button></div><p id="infoText"></p></dialog>
 <dialog id="authDialog"><form id="authForm" method="dialog"><div class="modalHead"><h3>Sign in</h3><button class="modalClose" value="cancel" aria-label="Close">×</button></div><p class="muted small">Use an email magic link when cloud sync is configured. Otherwise your data stays on this device.</p><label>Email<input id="authEmail" placeholder="you@example.com" type="email" required></label><button id="sendLink" class="primary full" value="submit">Send sign-in link</button><p class="muted small" id="authStatus"></p></form></dialog>
 <script type="module" src="app.js"></script><script type="module" src="market.js"></script><script src="ui.js" defer></script>
-<script src="market-wide.js" defer></script><script src="market-compare.js" defer></script><script src="card-markets.js?v=30d-live-3" defer></script><script src="portfolio-import.js" defer></script><script src="gem-discovery.js" defer></script><script src="interface-updates.js" defer></script>
+<script src="market-wide.js?v=gauge-dot-1" defer></script><script src="market-compare.js" defer></script><script src="card-markets.js?v=30d-live-3" defer></script><script src="portfolio-import.js" defer></script><script src="gem-discovery.js" defer></script><script src="interface-updates.js" defer></script>
 <dialog id="marketCardDialog" class="market-card-dialog" aria-label="Market card details">
  <div class="modal-header"><span class="market-kicker">AFTERMARKET INTELLIGENCE</span><button id="closeMarketCard" class="modalClose" type="button" aria-label="Close card details">×</button></div>
  <div class="market-card-body" id="marketCardBody"><p class="muted">Loading card details...</p></div>
