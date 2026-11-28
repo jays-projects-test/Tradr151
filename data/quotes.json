@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T21:11:30.926Z",
+  "updated_at": "2026-11-28T07:41:20.761Z",
   "cards": [
     {
       "id": "base1-1",
@@ -7,7 +7,7 @@
       "name": "Alakazam",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/1",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
@@ -22,7 +22,7 @@
       "name": "Blastoise",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/2",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
@@ -37,7 +37,7 @@
       "name": "Charizard",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/4",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
@@ -52,11 +52,11 @@
       "name": "Gyarados",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/6",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 60.82
+          "guide_usd": 61.06
         }
       ],
       "cardmarket_guide_eur": 22.78
@@ -67,7 +67,7 @@
       "name": "Magneton",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/9",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
@@ -82,11 +82,11 @@
       "name": "Nidoking",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/11",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 38.06
+          "guide_usd": 38.16
         }
       ],
       "cardmarket_guide_eur": 31.49
@@ -97,11 +97,11 @@
       "name": "Ninetales",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/12",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 36.81
+          "guide_usd": 37.31
         }
       ],
       "cardmarket_guide_eur": 17.71
@@ -112,11 +112,11 @@
       "name": "Poliwrath",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/13",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 34.99
+          "guide_usd": 34.29
         }
       ],
       "cardmarket_guide_eur": 29.2
@@ -127,7 +127,7 @@
       "name": "Raichu",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/14",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
@@ -142,11 +142,11 @@
       "name": "Venusaur",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/15",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 134.23
+          "guide_usd": 130.35
         }
       ],
       "cardmarket_guide_eur": 103.64
@@ -157,11 +157,11 @@
       "name": "Zapdos",
       "set": "Base Set",
       "image": "https://assets.tcgdex.net/en/base/base1/16",
-      "observed_at": "2026-11-27T21:11:30.926Z",
+      "observed_at": "2026-11-28T07:41:20.761Z",
       "tcgplayer_variants": [
         {
           "variant": "holofoil",
-          "guide_usd": 57.96
+          "guide_usd": 59.07
         }
       ],
       "cardmarket_guide_eur": 36.68
